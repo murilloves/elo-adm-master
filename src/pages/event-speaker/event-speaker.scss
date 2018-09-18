@@ -1,0 +1,47 @@
+page-event-speaker {
+    input.text-input {
+        margin: 13px 0px;
+        width: 100%;
+        padding: 0;
+        border: 1px solid #ccc;
+        border-radius: 0.5em;
+        padding: 0.5em;
+    }
+    img.speakers-photo {
+        display: block;
+        border-radius: 0.5em;
+        width: 65%;
+        margin: auto;
+    }
+
+    /* Esconde o input */
+    input[type='file'] {
+        display: none
+    }
+
+    ion-label.label {
+        white-space: initial;
+        line-height: 1.5em;
+    }
+
+    /* Aparência que terá o seletor de arquivo */
+    label {
+        background-color: #4285F4;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 24px;
+    }
+
+    hr {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .fr-toolbar .fr-command.fr-btn.fr-dropdown.fr-selection {
+        display: none;
+    }
+    .fr-quick-insert.fr-visible {
+        display: none !important;
+    }
+}

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{ event?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- PALESTRANTES CADASTRADOS -->
+  <ion-item-divider color="info" text-center>
+    <strong>Sessão Interativa</strong>
+  </ion-item-divider>
+  <div padding>
+    <ion-row padding *ngIf="initialLoading" text-center>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>
+    </ion-row>
+    <ion-row padding *ngIf="!allSpeakers && !initialLoading" text-center>
+      <span>Nenhum palestrante cadastrado para este evento ainda.</span>
+    </ion-row>
+    <ion-grid *ngIf="allSpeakers && !initialLoading" class="mb-1">
+      <ion-row>
+        <ion-col>
+          <strong>Palestrante</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Tema</strong>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <div>
+        <ion-row class="table-striped" *ngFor="let speaker of allSpeakers" (click)="goToQuestionsSection(speaker)">
+          <ion-col class="ellipsis">
+            {{ speaker.name }}
+          </ion-col>
+          <ion-col class="ellipsis">
+            {{ speaker.detail }}
+          </ion-col>
+        </ion-row>
+      </div>
+      <hr />
+    </ion-grid>
+  </div>
+</ion-content>

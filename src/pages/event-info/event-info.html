@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{ event?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-grid fixed>
+      <ion-row align-items-center justify-content-center>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-card>
+            <ion-item-divider color="info" text-center>Informações Gerais do Evento</ion-item-divider>
+            <ion-list>
+              <ion-item>
+                <ion-label stacked>Nome</ion-label>
+                <ion-input type="text" value="{{ event.name }}" formControlName="name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Resumo</ion-label>
+                <ion-input type="text" value="{{ event.description }}" formControlName="description"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Data</ion-label>
+                <ion-input type="text" value="{{ event.date }}" formControlName="date"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Estado</ion-label>
+                <ion-select formControlName="state">
+                  <ion-option value="AC">Acre</ion-option>
+                  <ion-option value="AL">Alagoas</ion-option>
+                  <ion-option value="AP">Amapá</ion-option>
+                  <ion-option value="AM">Amazonas</ion-option>
+                  <ion-option value="BA">Bahia</ion-option>
+                  <ion-option value="CE">Ceará</ion-option>
+                  <ion-option value="DF">Distrito Federal</ion-option>
+                  <ion-option value="ES">Espírito Santo</ion-option>
+                  <ion-option value="GO">Goiás</ion-option>
+                  <ion-option value="MA">Maranhão</ion-option>
+                  <ion-option value="MT">Mato Grosso</ion-option>
+                  <ion-option value="MS">Mato Grosso do Sul</ion-option>
+                  <ion-option value="MG">Minas Gerais</ion-option>
+                  <ion-option value="PA">Pará</ion-option>
+                  <ion-option value="PB">Paraíba</ion-option>
+                  <ion-option value="PR">Paraná</ion-option>
+                  <ion-option value="PE">Pernambuco</ion-option>
+                  <ion-option value="PI">Piauí</ion-option>
+                  <ion-option value="RJ">Rio de Janeiro</ion-option>
+                  <ion-option value="RN">Rio Grande do Norte</ion-option>
+                  <ion-option value="RS">Rio Grande do Sul</ion-option>
+                  <ion-option value="RO">Rondônia</ion-option>
+                  <ion-option value="RR">Roraima</ion-option>
+                  <ion-option value="SC">Santa Catarina</ion-option>
+                  <ion-option value="SP">São Paulo</ion-option>
+                  <ion-option value="SE">Sergipe</ion-option>
+                  <ion-option value="TO">Tocantins</ion-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Cidade</ion-label>
+                <ion-input type="text" value="{{ event.city }}" formControlName="city"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Local</ion-label>
+                <ion-input type="text" value="{{ event.place }}" formControlName="place"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR INFORMAÇÕES</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

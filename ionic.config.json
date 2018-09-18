@@ -1,0 +1,13 @@
+{
+  "name": "elo-adm",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/elo-api",
+      "proxyUrl": "https://elo-api.azurewebsites.net/v1"
+    }
+  ]
+}

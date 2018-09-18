@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{ event?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- PALESTRANTES CADASTRADOS -->
+  <ion-item-divider color="info" text-center>
+    <strong>Palestrantes cadastrados</strong>
+  </ion-item-divider>
+  <div padding>
+    <ion-row padding *ngIf="initialLoading" text-center>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>
+    </ion-row>
+    <ion-row padding *ngIf="!allSpeakers && !initialLoading" text-center>
+      <span>Nenhum palestrante cadastrado para este evento ainda.</span>
+    </ion-row>
+    <ion-grid *ngIf="allSpeakers && !initialLoading" class="mb-1">
+      <ion-row>
+        <ion-col>
+          <strong>Palestrante</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Tema</strong>
+        </ion-col>
+        <ion-col class="text-right">
+          <strong>Deletar</strong>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <ion-row class="table-striped" *ngFor="let speaker of allSpeakers">
+        <ion-col class="ellipsis">
+          {{ speaker.name }}
+        </ion-col>
+        <ion-col class="ellipsis">
+          {{ speaker.detail }}
+        </ion-col>
+        <ion-col class="text-right">
+          <i class="fa fa-trash-o fa-lg danger"></i>
+        </ion-col>
+      </ion-row>
+      <hr />
+    </ion-grid>
+  </div>
+
+  <!-- CADASTRO -->
+  <ion-item-divider color="info" text-center>
+    <strong>Cadastrar novo palestrante</strong>
+  </ion-item-divider>
+  <form [formGroup]="form" padding>
+    <ion-grid fixed>
+      <ion-row align-items-center justify-content-center>
+        <!-- <ion-col col-12 col-sm-12 col-md-12>
+          <ion-item-divider color="info" (click)="newSpeaker()" text-center>Cadastrar Novo Palestrante</ion-item-divider>
+        </ion-col> -->
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked>Foto</ion-label>
+          <div *ngIf="isDesktop">
+            <div class="m-16">
+              <label for='speakers-photo'>Selecione uma foto...</label>
+            </div>
+            <input type="file" id="speakers-photo" name="speakers-photo" (change)="readImg($event)">
+          </div>
+          <div *ngIf="!isDesktop" class="mh-16">
+            <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>
+          </div>
+          <!-- <ion-input type="text" value="{{ newSpeaker.image }}" formControlName="image"></ion-input> -->
+          <div class="mt-32" *ngIf="myphoto">
+            <img class="speakers-photo"src="{{ myphoto }}">
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked>Nome</ion-label>
+          <div class="mh-16">
+            <ion-input type="text" value="{{ newSpeaker?.name }}" formControlName="name"></ion-input>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked>Tema da Palestra</ion-label>
+          <div class="mh-16">
+            <ion-input type="text" value="{{ newSpeaker?.detail }}" formControlName="detail"></ion-input>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked>Currículo</ion-label>
+          <!-- <ion-input type="text" value="{{ newSpeaker?.resume }}" formControlName="resume"></ion-input> -->
+          <div class="m-16">
+            <div id="froala-editor" [froalaEditor] formControlName="resume"></div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row padding>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR INFORMAÇÕES</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

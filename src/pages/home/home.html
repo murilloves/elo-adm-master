@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Eventos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-3 *ngFor="let event of events | async" (click)="goToEvent(event)">
+        <ion-card>
+          <ion-card-header class="bold">
+            {{ event.name }}
+          </ion-card-header>
+          <ion-card-content>
+            {{ event.date }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

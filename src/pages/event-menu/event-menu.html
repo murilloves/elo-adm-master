@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{ event?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-3>
+        <ion-card (click)="info()">
+          <ion-card-header class="bold">
+            Informações
+          </ion-card-header>
+          <ion-card-content>
+            Informações gerais do evento
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12 col-md-6 col-lg-3>
+        <ion-card (click)="sponsors()">
+          <ion-card-header class="bold">
+            Patrocinadores
+          </ion-card-header>
+          <ion-card-content>
+            Patrocinadores do evento
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12 col-md-6 col-lg-3>
+        <ion-card (click)="speakers()">
+          <ion-card-header class="bold">
+            Palestrantes
+          </ion-card-header>
+          <ion-card-content>
+            Palestrantes do evento
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12 col-md-6 col-lg-3>
+        <ion-card (click)="schedule()">
+          <ion-card-header class="bold">
+            Programação
+          </ion-card-header>
+          <ion-card-content>
+            Programação do evento
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-3>
+        <ion-card (click)="interactiveSection()">
+          <ion-card-header class="bold">
+            Sessão Interativa
+          </ion-card-header>
+          <ion-card-content>
+            Perguntas e respostas para a Sessão Interativa
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
