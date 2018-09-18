@@ -31,12 +31,12 @@ export class EventSpeakerPage {
     private speakerService: SpeakerService
   ) {
     this.event = this.navParams.get('event');
-    // console.log('event', this.event);
 
     this.setClearFormAndImg();
   }
 
   ionViewDidLoad() {
+    // console.log('event', this.event);
     this.froalaInit();
     this.getAllSpeakers();
   }
@@ -111,7 +111,7 @@ export class EventSpeakerPage {
   setClearFormAndImg() {
     this.form = this.formBuilder.group({
       // eventId: [this.event.UID],
-      eventId: ['792863ff-0393-4c1c-93d1-650e1f3bd298'],
+      eventId: [this.event.eventId],
       name: ['', Validators.required],
       detail: ['', Validators.required],
       resume: [''],

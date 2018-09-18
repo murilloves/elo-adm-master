@@ -9,16 +9,16 @@
 
 <ion-content>
   <ion-item-divider color="info" text-center>
-      Perguntas de <strong>{{ speaker?.name }}</strong>
+      Perguntas da <strong>{{ session?.title }}</strong>
   </ion-item-divider>
   <div padding>
     <ion-row padding *ngIf="initialLoading" text-center>
       <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>
     </ion-row>
-    <ion-row padding *ngIf="!allQuestions && !initialLoading" text-center>
-      <span>Nenhuma pergunta cadastrada para este palestrante.</span>
+    <ion-row padding *ngIf="!initialLoading && allQuestions === null" text-center>
+      <span>Nenhuma pergunta cadastrada para esta sessão.</span>
     </ion-row>
-    <ion-grid *ngIf="allQuestions && initialLoading" class="mb-1">
+    <ion-grid *ngIf="!initialLoading && allQuestions && allQuestions.length > 0" class="mb-1">
       <ion-row>
         <ion-col>
           <strong>Ordem (nº)</strong>

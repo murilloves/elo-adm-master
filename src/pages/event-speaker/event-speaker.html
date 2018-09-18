@@ -28,9 +28,9 @@
         <ion-col>
           <strong>Tema</strong>
         </ion-col>
-        <ion-col class="text-right">
+        <!-- <ion-col class="text-right">
           <strong>Deletar</strong>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
       <hr />
       <ion-row class="table-striped" *ngFor="let speaker of allSpeakers">
@@ -40,9 +40,9 @@
         <ion-col class="ellipsis">
           {{ speaker.detail }}
         </ion-col>
-        <ion-col class="text-right">
+        <!-- <ion-col class="text-right">
           <i class="fa fa-trash-o fa-lg danger"></i>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
       <hr />
     </ion-grid>
@@ -60,16 +60,17 @@
         </ion-col> -->
         <ion-col col-12 col-sm-12 col-md-12>
           <ion-label stacked>Foto</ion-label>
-          <div *ngIf="isDesktop">
+          <!-- <div *ngIf="isDesktop"> -->
+          <div>
             <div class="m-16">
               <label for='speakers-photo'>Selecione uma foto...</label>
             </div>
             <input type="file" id="speakers-photo" name="speakers-photo" (change)="readImg($event)">
           </div>
-          <div *ngIf="!isDesktop" class="mh-16">
+          <!-- if is Cordova -->
+          <!-- <div *ngIf="!isDesktop" class="mh-16">
             <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>
-          </div>
-          <!-- <ion-input type="text" value="{{ newSpeaker.image }}" formControlName="image"></ion-input> -->
+          </div> -->
           <div class="mt-32" *ngIf="myphoto">
             <img class="speakers-photo"src="{{ myphoto }}">
           </div>

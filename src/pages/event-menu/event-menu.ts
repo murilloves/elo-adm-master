@@ -6,6 +6,7 @@ import { EventSponsorPage } from '../event-sponsor/event-sponsor';
 import { EventSpeakerPage } from '../event-speaker/event-speaker';
 import { EventSchedulePage } from '../event-schedule/event-schedule';
 import { EventInteractiveSectionPage } from '../event-interactive-section/event-interactive-section';
+import { EventsService } from './event-menu.service';
 
 @Component({
   selector: 'page-event-menu',
@@ -14,9 +15,33 @@ import { EventInteractiveSectionPage } from '../event-interactive-section/event-
 export class EventMenuPage {
 
   public event: EventModel;
+  allEvents;
+  chosenEvent;
+  initialLoading = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private eventsService: EventsService
+  ) {
     this.event = this.navParams.get('event');
+    this.getEvents();
+  }
+
+  getEvents() {
+    this.eventsService.getEvents()
+      .subscribe( response => {
+        this.allEvents = response;
+        this.initialLoading = false;
+        // console.log('this.event', this.event);
+        // console.log('this.allEvents', this.allEvents);
+        this.chosenEvent = this.allEvents.filter( evt => {
+          return !this.event.name.indexOf(evt.name);
+        });
+        this.chosenEvent = this.chosenEvent[0];
+        this.event.eventId = this.chosenEvent.id;
+      }
+    );
   }
 
   info() {

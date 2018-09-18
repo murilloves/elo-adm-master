@@ -14,17 +14,17 @@ export class SpeakerService {
 
     getSpeakers(): Observable < Object > {
         return this.http
-            .get(`${API.baseDev}/speakers`);
+            .get(`${API.base}/speakers`);
     }
 
     getSpeakerById(id): Observable < Object > {
         return this.http
-            .get(`${API.baseDev}/speakers/${id}`);
+            .get(`${API.base}/speakers/${id}`);
     }
 
     addSpeaker(data) {
         return this.http
-            .post(`${API.baseDev}/speakers/`, data);
+            .post(`${API.base}/speakers/`, data);
     }
 
     getSpeakersHardCode(): Observable < Object > {

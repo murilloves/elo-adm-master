@@ -2,7 +2,6 @@
 
 .danger { color: #ef473a }
 
-
 .pt-3 { padding-top: 3em }
     
 .m-16 { margin: 16px }
@@ -50,4 +49,9 @@ ion-col.col.ellipsis {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+// Don't show Froala's purchase message
+.fr-wrapper div a {
+    display: none !important;
 }

@@ -4,6 +4,7 @@
 export const API = {
     dev: "http://localhost:8100/assets/json",
     baseDev: "/elo-api",
+    prod: "https://elo-api.azurewebsites.net/v1",
     base: "https://elo-api.azurewebsites.net/v1",
     proxyUrl: "https://elo-api.azurewebsites.net/v1",
 };

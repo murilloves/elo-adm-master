@@ -1,43 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 129:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return API; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Environment; });
-// https://elo-api.azurewebsites.net/swagger
-// https://elo-api.azurewebsites.net/v1/questions
-var API = {
-    dev: "http://localhost:8100/assets/json",
-    baseDev: "/elo-api",
-    base: "https://elo-api.azurewebsites.net/v1",
-    proxyUrl: "https://elo-api.azurewebsites.net/v1",
-};
-var Environment = {
-    production: false,
-    firebase: {
-        apiKey: "AIzaSyAYdhtGQER6QoNs6txa-UwAy1l526S7V5I",
-        authDomain: "elo-eventos.firebaseapp.com",
-        databaseURL: "https://elo-eventos.firebaseio.com",
-        projectId: "elo-eventos",
-        storageBucket: "elo-eventos.appspot.com",
-        messagingSenderId: "36831031378"
-    }
-};
-//# sourceMappingURL=environment.js.map
-
-/***/ }),
-
 /***/ 157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SpeakerService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment_environment__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment_environment__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,15 +29,15 @@ var SpeakerService = /** @class */ (function () {
     }
     SpeakerService.prototype.getSpeakers = function () {
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].baseDev + "/speakers");
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/speakers");
     };
     SpeakerService.prototype.getSpeakerById = function (id) {
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].baseDev + "/speakers/" + id);
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/speakers/" + id);
     };
     SpeakerService.prototype.addSpeaker = function (data) {
         return this.http
-            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].baseDev + "/speakers/", data);
+            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/speakers/", data);
     };
     SpeakerService.prototype.getSpeakersHardCode = function () {
         return this.http
@@ -90,7 +61,7 @@ var SpeakerService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventRegisterQuestionsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_register_questions_event_register_questions_service__ = __webpack_require__(240);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -112,9 +83,10 @@ var EventRegisterQuestionsPage = /** @class */ (function () {
         this.navParams = navParams;
         this.questionsService = questionsService;
         this.initialLoading = true;
+        this.allQuestions = null;
         this.event = this.navParams.get('event');
-        this.speaker = this.navParams.get('speaker');
-        console.log('this.speaker', this.speaker);
+        this.session = this.navParams.get('session');
+        console.log('this.session', this.session);
         // this.getSpeakerById();
         this.getAllQuestionsBySpeaker();
     }
@@ -126,27 +98,28 @@ var EventRegisterQuestionsPage = /** @class */ (function () {
     //     });
     //   }
     EventRegisterQuestionsPage.prototype.getAllQuestionsBySpeaker = function () {
-        // this.questionsService.getQuestionsBySpeakerId(this.speakerId)
-        //   .subscribe( response => {
-        //     this.initialLoading = false;
-        //     this.allQuestions = response;
-        //     console.log(this.allQuestions);
-        //   }, error {
-        //     Ocorreu um erro ao buscar as perguntas deste palestrante. Tentar novamente?
-        // });
+        var _this = this;
+        this.questionsService.getQuestionById(this.speakerId)
+            .subscribe(function (response) {
+            _this.initialLoading = false;
+            _this.allQuestions = response;
+            console.log('this.allQuestions', _this.allQuestions);
+            // }
+            // , error {
+            // Ocorreu um erro ao buscar as perguntas deste palestrante. Tentar novamente?
+        });
     };
     EventRegisterQuestionsPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad EventRegisterQuestionsPage');
     };
     EventRegisterQuestionsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event-register-questions',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-register-questions\event-register-questions.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title text-center>{{ event?.name }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-item-divider color="info" text-center>\n      Perguntas de <strong>{{ speaker?.name }}</strong>\n  </ion-item-divider>\n  <div padding>\n    <ion-row padding *ngIf="initialLoading" text-center>\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n    </ion-row>\n    <ion-row padding *ngIf="!allQuestions && !initialLoading" text-center>\n      <span>Nenhuma pergunta cadastrada para este palestrante.</span>\n    </ion-row>\n    <ion-grid *ngIf="allQuestions && initialLoading" class="mb-1">\n      <ion-row>\n        <ion-col>\n          <strong>Ordem (nº)</strong>\n        </ion-col>\n        <ion-col>\n          <strong>Pergunta</strong>\n        </ion-col>\n      </ion-row>\n      <hr />\n      <ion-row class="table-striped" *ngFor="let question of allQuestions" (click)="goToQuestionsSection()">\n        <ion-col class="ellipsis">\n          {{ question.name }}\n        </ion-col>\n        <ion-col class="ellipsis">\n          {{ question.detail }}\n        </ion-col>\n      </ion-row>\n      <hr />\n    </ion-grid>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-register-questions\event-register-questions.html"*/,
+            selector: 'page-event-register-questions',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-register-questions\event-register-questions.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title text-center>{{ event?.name }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-item-divider color="info" text-center>\n      Perguntas da <strong>{{ session?.title }}</strong>\n  </ion-item-divider>\n  <div padding>\n    <ion-row padding *ngIf="initialLoading" text-center>\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n    </ion-row>\n    <ion-row padding *ngIf="!initialLoading && allQuestions === null" text-center>\n      <span>Nenhuma pergunta cadastrada para esta sessão.</span>\n    </ion-row>\n    <ion-grid *ngIf="!initialLoading && allQuestions && allQuestions.length > 0" class="mb-1">\n      <ion-row>\n        <ion-col>\n          <strong>Ordem (nº)</strong>\n        </ion-col>\n        <ion-col>\n          <strong>Pergunta</strong>\n        </ion-col>\n      </ion-row>\n      <hr />\n      <ion-row class="table-striped" *ngFor="let question of allQuestions" (click)="goToQuestionsSection()">\n        <ion-col class="ellipsis">\n          {{ question.name }}\n        </ion-col>\n        <ion-col class="ellipsis">\n          {{ question.detail }}\n        </ion-col>\n      </ion-row>\n      <hr />\n    </ion-grid>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-register-questions\event-register-questions.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__event_register_questions_event_register_questions_service__["a" /* QuestionsService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__event_register_questions_event_register_questions_service__["a" /* QuestionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__event_register_questions_event_register_questions_service__["a" /* QuestionsService */]) === "function" && _c || Object])
     ], EventRegisterQuestionsPage);
     return EventRegisterQuestionsPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=event-register-questions.js.map
@@ -175,7 +148,7 @@ webpackEmptyAsyncContext.id = 197;
 
 var map = {
 	"../pages/event-register-questions/event-register-questions.module": [
-		511,
+		513,
 		0
 	]
 };
@@ -201,9 +174,9 @@ module.exports = webpackAsyncContext;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuestionsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment_environment__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment_environment__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -224,15 +197,19 @@ var QuestionsService = /** @class */ (function () {
     }
     QuestionsService.prototype.getQuestions = function () {
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].baseDev + "/questions");
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/questions");
     };
     QuestionsService.prototype.getQuestionById = function (id) {
         return this.http
-            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].baseDev + "/questions/" + id);
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/questions/" + id);
+    };
+    QuestionsService.prototype.getQuestionsBySessionId = function (sessionId) {
+        return this.http
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/questions/" + sessionId);
     };
     QuestionsService.prototype.addQuestion = function (data) {
         return this.http
-            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].baseDev + "/questions/", data);
+            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/questions/", data);
     };
     QuestionsService.prototype.getQuestionsHardCode = function () {
         return this.http
@@ -240,10 +217,10 @@ var QuestionsService = /** @class */ (function () {
     };
     QuestionsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]) === "function" && _b || Object])
     ], QuestionsService);
     return QuestionsService;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=event-register-questions.service.js.map
@@ -256,7 +233,7 @@ var QuestionsService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(284);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -280,7 +257,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\login\login.html"*/'<ion-content padding>\n\n  <ion-grid fixed>\n\n    <ion-row align-items-center justify-content-center>\n\n      <img src="../../assets/imgs/logomarca.png" width="250" height="250">\n\n    </ion-row>\n\n    <ion-row align-items-center justify-content-center>\n\n      <ion-col col-12 col-sm-12 col-md-8>\n\n        <ion-card>\n\n          <ion-item-divider text-center>Autentique-se</ion-item-divider>\n\n          <ion-list>\n\n            <ion-item>\n\n              <ion-label stacked>E-mail</ion-label>\n\n              <ion-input type="text"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label stacked>Senha</ion-label>\n\n              <ion-input type="password"></ion-input>\n\n            </ion-item>\n\n          </ion-list>\n\n        </ion-card>\n\n        <ion-card>\n\n          <button class="btn-entrar" ion-button block (click)="login()">ENTRAR</button>\n\n        </ion-card>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-toolbar text-center>\n\n    <p ion-text color="dark">Elo Eventos 2018 - Todos os direitos reservados</p>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\login\login.html"*/'<ion-content padding>\n\n  <ion-grid fixed>\n\n    <ion-row align-items-center justify-content-center>\n\n      <img src="/assets/imgs/logomarca.png" width="250" height="250">\n\n    </ion-row>\n\n    <ion-row align-items-center justify-content-center>\n\n      <ion-col col-12 col-sm-12 col-md-8>\n\n        <ion-card>\n\n          <ion-item-divider text-center>Autentique-se</ion-item-divider>\n\n          <ion-list>\n\n            <ion-item>\n\n              <ion-label stacked>E-mail</ion-label>\n\n              <ion-input type="text"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n              <ion-label stacked>Senha</ion-label>\n\n              <ion-input type="password"></ion-input>\n\n            </ion-item>\n\n          </ion-list>\n\n        </ion-card>\n\n        <ion-card>\n\n          <button class="btn-entrar" ion-button block (click)="login()">ENTRAR</button>\n\n        </ion-card>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-toolbar text-center>\n\n    <p ion-text color="dark">Elo Eventos 2018 - Todos os direitos reservados</p>\n\n  </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\login\login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], LoginPage);
@@ -334,7 +311,7 @@ var TabsPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -369,7 +346,7 @@ var ContactPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_angularfire2_firestore__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_angularfire2_firestore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__node_modules_angularfire2_firestore__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__event_menu_event_menu__ = __webpack_require__(290);
@@ -415,12 +392,13 @@ var HomePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventMenuPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_info_event_info__ = __webpack_require__(291);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__event_sponsor_event_sponsor__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__event_speaker_event_speaker__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__event_schedule_event_schedule__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__event_interactive_section_event_interactive_section__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__event_menu_service__ = __webpack_require__(297);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -437,12 +415,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var EventMenuPage = /** @class */ (function () {
-    function EventMenuPage(navCtrl, navParams) {
+    function EventMenuPage(navCtrl, navParams, eventsService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.eventsService = eventsService;
+        this.initialLoading = true;
         this.event = this.navParams.get('event');
+        this.getEvents();
     }
+    EventMenuPage.prototype.getEvents = function () {
+        var _this = this;
+        this.eventsService.getEvents()
+            .subscribe(function (response) {
+            _this.allEvents = response;
+            _this.initialLoading = false;
+            // console.log('this.event', this.event);
+            // console.log('this.allEvents', this.allEvents);
+            _this.chosenEvent = _this.allEvents.filter(function (evt) {
+                return !_this.event.name.indexOf(evt.name);
+            });
+            _this.chosenEvent = _this.chosenEvent[0];
+            _this.event.eventId = _this.chosenEvent.id;
+        });
+    };
     EventMenuPage.prototype.info = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__event_info_event_info__["a" /* EventInfoPage */], { event: this.event });
     };
@@ -462,7 +459,9 @@ var EventMenuPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-event-menu',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-menu\event-menu.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title text-center>{{ event?.name }}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-12 col-md-6 col-lg-3>\n\n        <ion-card (click)="info()">\n\n          <ion-card-header class="bold">\n\n            Informações\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n            Informações gerais do evento\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n      <ion-col col-12 col-md-6 col-lg-3>\n\n        <ion-card (click)="sponsors()">\n\n          <ion-card-header class="bold">\n\n            Patrocinadores\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n            Patrocinadores do evento\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n      <ion-col col-12 col-md-6 col-lg-3>\n\n        <ion-card (click)="speakers()">\n\n          <ion-card-header class="bold">\n\n            Palestrantes\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n            Palestrantes do evento\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n      <ion-col col-12 col-md-6 col-lg-3>\n\n        <ion-card (click)="schedule()">\n\n          <ion-card-header class="bold">\n\n            Programação\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n            Programação do evento\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-12 col-md-6 col-lg-3>\n\n        <ion-card (click)="interactiveSection()">\n\n          <ion-card-header class="bold">\n\n            Sessão Interativa\n\n          </ion-card-header>\n\n          <ion-card-content>\n\n            Perguntas e respostas para a Sessão Interativa\n\n          </ion-card-content>\n\n        </ion-card>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-menu\event-menu.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_7__event_menu_service__["a" /* EventsService */]])
     ], EventMenuPage);
     return EventMenuPage;
 }());
@@ -477,7 +476,7 @@ var EventMenuPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventInfoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__node_modules_angularfire2_firestore__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__node_modules_angularfire2_firestore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__node_modules_angularfire2_firestore__);
@@ -561,7 +560,7 @@ var EventInfoPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventSponsorPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -598,7 +597,7 @@ var EventSponsorPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventSpeakerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__event_speaker_service__ = __webpack_require__(157);
@@ -626,10 +625,10 @@ var EventSpeakerPage = /** @class */ (function () {
         this.initialLoading = true;
         this.isDesktop = (!document.URL.startsWith('http') || document.URL.startsWith('http://localhost:8100'));
         this.event = this.navParams.get('event');
-        // console.log('event', this.event);
         this.setClearFormAndImg();
     }
     EventSpeakerPage.prototype.ionViewDidLoad = function () {
+        // console.log('event', this.event);
         this.froalaInit();
         this.getAllSpeakers();
     };
@@ -698,7 +697,7 @@ var EventSpeakerPage = /** @class */ (function () {
     EventSpeakerPage.prototype.setClearFormAndImg = function () {
         this.form = this.formBuilder.group({
             // eventId: [this.event.UID],
-            eventId: ['792863ff-0393-4c1c-93d1-650e1f3bd298'],
+            eventId: [this.event.eventId],
             name: ['', __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__["f" /* Validators */].required],
             detail: ['', __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__["f" /* Validators */].required],
             resume: [''],
@@ -725,7 +724,7 @@ var EventSpeakerPage = /** @class */ (function () {
     };
     EventSpeakerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event-speaker',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-speaker\event-speaker.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title text-center>{{ event?.name }}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n  <!-- PALESTRANTES CADASTRADOS -->\n\n  <ion-item-divider color="info" text-center>\n\n    <strong>Palestrantes cadastrados</strong>\n\n  </ion-item-divider>\n\n  <div padding>\n\n    <ion-row padding *ngIf="initialLoading" text-center>\n\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n\n    </ion-row>\n\n    <ion-row padding *ngIf="!allSpeakers && !initialLoading" text-center>\n\n      <span>Nenhum palestrante cadastrado para este evento ainda.</span>\n\n    </ion-row>\n\n    <ion-grid *ngIf="allSpeakers && !initialLoading" class="mb-1">\n\n      <ion-row>\n\n        <ion-col>\n\n          <strong>Palestrante</strong>\n\n        </ion-col>\n\n        <ion-col>\n\n          <strong>Tema</strong>\n\n        </ion-col>\n\n        <ion-col class="text-right">\n\n          <strong>Deletar</strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      <hr />\n\n      <ion-row class="table-striped" *ngFor="let speaker of allSpeakers">\n\n        <ion-col class="ellipsis">\n\n          {{ speaker.name }}\n\n        </ion-col>\n\n        <ion-col class="ellipsis">\n\n          {{ speaker.detail }}\n\n        </ion-col>\n\n        <ion-col class="text-right">\n\n          <i class="fa fa-trash-o fa-lg danger"></i>\n\n        </ion-col>\n\n      </ion-row>\n\n      <hr />\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <!-- CADASTRO -->\n\n  <ion-item-divider color="info" text-center>\n\n    <strong>Cadastrar novo palestrante</strong>\n\n  </ion-item-divider>\n\n  <form [formGroup]="form" padding>\n\n    <ion-grid fixed>\n\n      <ion-row align-items-center justify-content-center>\n\n        <!-- <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-item-divider color="info" (click)="newSpeaker()" text-center>Cadastrar Novo Palestrante</ion-item-divider>\n\n        </ion-col> -->\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Foto</ion-label>\n\n          <div *ngIf="isDesktop">\n\n            <div class="m-16">\n\n              <label for=\'speakers-photo\'>Selecione uma foto...</label>\n\n            </div>\n\n            <input type="file" id="speakers-photo" name="speakers-photo" (change)="readImg($event)">\n\n          </div>\n\n          <div *ngIf="!isDesktop" class="mh-16">\n\n            <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>\n\n          </div>\n\n          <!-- <ion-input type="text" value="{{ newSpeaker.image }}" formControlName="image"></ion-input> -->\n\n          <div class="mt-32" *ngIf="myphoto">\n\n            <img class="speakers-photo"src="{{ myphoto }}">\n\n          </div>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Nome</ion-label>\n\n          <div class="mh-16">\n\n            <ion-input type="text" value="{{ newSpeaker?.name }}" formControlName="name"></ion-input>\n\n          </div>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Tema da Palestra</ion-label>\n\n          <div class="mh-16">\n\n            <ion-input type="text" value="{{ newSpeaker?.detail }}" formControlName="detail"></ion-input>\n\n          </div>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Currículo</ion-label>\n\n          <!-- <ion-input type="text" value="{{ newSpeaker?.resume }}" formControlName="resume"></ion-input> -->\n\n          <div class="m-16">\n\n            <div id="froala-editor" [froalaEditor] formControlName="resume"></div>\n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row padding>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR INFORMAÇÕES</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-speaker\event-speaker.html"*/,
+            selector: 'page-event-speaker',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-speaker\event-speaker.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title text-center>{{ event?.name }}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n  <!-- PALESTRANTES CADASTRADOS -->\n\n  <ion-item-divider color="info" text-center>\n\n    <strong>Palestrantes cadastrados</strong>\n\n  </ion-item-divider>\n\n  <div padding>\n\n    <ion-row padding *ngIf="initialLoading" text-center>\n\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n\n    </ion-row>\n\n    <ion-row padding *ngIf="!allSpeakers && !initialLoading" text-center>\n\n      <span>Nenhum palestrante cadastrado para este evento ainda.</span>\n\n    </ion-row>\n\n    <ion-grid *ngIf="allSpeakers && !initialLoading" class="mb-1">\n\n      <ion-row>\n\n        <ion-col>\n\n          <strong>Palestrante</strong>\n\n        </ion-col>\n\n        <ion-col>\n\n          <strong>Tema</strong>\n\n        </ion-col>\n\n        <!-- <ion-col class="text-right">\n\n          <strong>Deletar</strong>\n\n        </ion-col> -->\n\n      </ion-row>\n\n      <hr />\n\n      <ion-row class="table-striped" *ngFor="let speaker of allSpeakers">\n\n        <ion-col class="ellipsis">\n\n          {{ speaker.name }}\n\n        </ion-col>\n\n        <ion-col class="ellipsis">\n\n          {{ speaker.detail }}\n\n        </ion-col>\n\n        <!-- <ion-col class="text-right">\n\n          <i class="fa fa-trash-o fa-lg danger"></i>\n\n        </ion-col> -->\n\n      </ion-row>\n\n      <hr />\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <!-- CADASTRO -->\n\n  <ion-item-divider color="info" text-center>\n\n    <strong>Cadastrar novo palestrante</strong>\n\n  </ion-item-divider>\n\n  <form [formGroup]="form" padding>\n\n    <ion-grid fixed>\n\n      <ion-row align-items-center justify-content-center>\n\n        <!-- <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-item-divider color="info" (click)="newSpeaker()" text-center>Cadastrar Novo Palestrante</ion-item-divider>\n\n        </ion-col> -->\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Foto</ion-label>\n\n          <!-- <div *ngIf="isDesktop"> -->\n\n          <div>\n\n            <div class="m-16">\n\n              <label for=\'speakers-photo\'>Selecione uma foto...</label>\n\n            </div>\n\n            <input type="file" id="speakers-photo" name="speakers-photo" (change)="readImg($event)">\n\n          </div>\n\n          <!-- if is Cordova -->\n\n          <!-- <div *ngIf="!isDesktop" class="mh-16">\n\n            <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>\n\n          </div> -->\n\n          <div class="mt-32" *ngIf="myphoto">\n\n            <img class="speakers-photo"src="{{ myphoto }}">\n\n          </div>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Nome</ion-label>\n\n          <div class="mh-16">\n\n            <ion-input type="text" value="{{ newSpeaker?.name }}" formControlName="name"></ion-input>\n\n          </div>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Tema da Palestra</ion-label>\n\n          <div class="mh-16">\n\n            <ion-input type="text" value="{{ newSpeaker?.detail }}" formControlName="detail"></ion-input>\n\n          </div>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Currículo</ion-label>\n\n          <!-- <ion-input type="text" value="{{ newSpeaker?.resume }}" formControlName="resume"></ion-input> -->\n\n          <div class="m-16">\n\n            <div id="froala-editor" [froalaEditor] formControlName="resume"></div>\n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row padding>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR INFORMAÇÕES</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-speaker\event-speaker.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
@@ -746,7 +745,7 @@ var EventSpeakerPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventSchedulePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -783,9 +782,11 @@ var EventSchedulePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventInteractiveSectionPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_speaker_event_speaker_service__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__event_register_questions_event_register_questions__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__event_speaker_event_speaker_service__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__event_interactive_section_service__ = __webpack_require__(508);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -799,52 +800,134 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var EventInteractiveSectionPage = /** @class */ (function () {
-    function EventInteractiveSectionPage(navCtrl, navParams, speakerService) {
+    function EventInteractiveSectionPage(navCtrl, navParams, formBuilder, speakerService, interactiveSectionsService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.formBuilder = formBuilder;
         this.speakerService = speakerService;
+        this.interactiveSectionsService = interactiveSectionsService;
+        this.allSpeakers = null;
+        this.allInterativeSections = null;
         this.initialLoading = true;
         this.event = this.navParams.get('event');
+        this.setClearForm();
         this.getAllSpeakers();
+        this.getAllInterativeSections();
     }
+    EventInteractiveSectionPage.prototype.setClearForm = function () {
+        this.form = this.formBuilder.group({
+            eventId: [this.event.eventId],
+            speakerId: ['', __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__["f" /* Validators */].required],
+            title: ['', __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__["f" /* Validators */].required],
+            description: ['', __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__["f" /* Validators */].required],
+        });
+    };
+    EventInteractiveSectionPage.prototype.getAllInterativeSections = function () {
+        var _this = this;
+        this.interactiveSectionsService.getSections()
+            .subscribe(function (response) {
+            _this.allInterativeSections = response;
+            _this.initialLoading = false;
+        });
+    };
     EventInteractiveSectionPage.prototype.getAllSpeakers = function () {
         var _this = this;
         this.speakerService.getSpeakers()
-            .subscribe(function (speakers) {
-            _this.allSpeakers = speakers;
-            _this.initialLoading = false;
-            // console.log(this.allSpeakers);
+            .subscribe(function (response) {
+            _this.allSpeakers = response;
         });
     };
-    EventInteractiveSectionPage.prototype.goToQuestionsSection = function (speaker) {
-        // this.event['speakerId'] = speakerId;
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__event_register_questions_event_register_questions__["a" /* EventRegisterQuestionsPage */], { event: this.event, speaker: speaker });
+    EventInteractiveSectionPage.prototype.save = function () {
+        // console.log(this.form);
+        var _this = this;
+        this.interactiveSectionsService.addSection(this.form.value)
+            .subscribe(function (response) {
+            _this.getAllInterativeSections();
+            _this.setClearForm();
+        }, function (error) {
+            // this.setClearForm();
+        });
+    };
+    EventInteractiveSectionPage.prototype.goToQuestionsSection = function (chosenSession) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__event_register_questions_event_register_questions__["a" /* EventRegisterQuestionsPage */], { event: this.event, session: chosenSession });
     };
     EventInteractiveSectionPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event-interactive-section',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-interactive-section\event-interactive-section.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title text-center>{{ event?.name }}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <!-- PALESTRANTES CADASTRADOS -->\n\n  <ion-item-divider color="info" text-center>\n\n    <strong>Sessão Interativa</strong>\n\n  </ion-item-divider>\n\n  <div padding>\n\n    <ion-row padding *ngIf="initialLoading" text-center>\n\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n\n    </ion-row>\n\n    <ion-row padding *ngIf="!allSpeakers && !initialLoading" text-center>\n\n      <span>Nenhum palestrante cadastrado para este evento ainda.</span>\n\n    </ion-row>\n\n    <ion-grid *ngIf="allSpeakers && !initialLoading" class="mb-1">\n\n      <ion-row>\n\n        <ion-col>\n\n          <strong>Palestrante</strong>\n\n        </ion-col>\n\n        <ion-col>\n\n          <strong>Tema</strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      <hr />\n\n      <div>\n\n        <ion-row class="table-striped" *ngFor="let speaker of allSpeakers" (click)="goToQuestionsSection(speaker)">\n\n          <ion-col class="ellipsis">\n\n            {{ speaker.name }}\n\n          </ion-col>\n\n          <ion-col class="ellipsis">\n\n            {{ speaker.detail }}\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n      <hr />\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-interactive-section\event-interactive-section.html"*/,
+            selector: 'page-event-interactive-section',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-interactive-section\event-interactive-section.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title text-center>{{ event?.name }}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <!-- SESSOES CADASTRADAS -->\n\n  <ion-item-divider color="info" text-center>\n\n    <strong>Sessão Interativa</strong>\n\n  </ion-item-divider>\n\n  <div padding>\n\n    <ion-row padding *ngIf="initialLoading" text-center>\n\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n\n    </ion-row>\n\n    <ion-row padding *ngIf="!initialLoading && allInterativeSections && allInterativeSections.length === 0" text-center>\n\n      <span>Nenhuma Sessão Interativa cadastrada até o momento.</span>\n\n    </ion-row>\n\n    <ion-grid *ngIf="!initialLoading && allInterativeSections && allInterativeSections.length > 0" class="mb-1">\n\n      <ion-row>\n\n        <ion-col>\n\n          <strong>Título</strong>\n\n        </ion-col>\n\n        <ion-col>\n\n          <strong>Descrição</strong>\n\n        </ion-col>\n\n      </ion-row>\n\n      <hr />\n\n      <div>\n\n        <ion-row class="table-striped" *ngFor="let interactiveSection of allInterativeSections" (click)="goToQuestionsSection(interactiveSection)">\n\n          <ion-col class="ellipsis">\n\n            {{ interactiveSection.title }}\n\n          </ion-col>\n\n          <ion-col class="ellipsis">\n\n            {{ interactiveSection.description }}\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n      <hr />\n\n    </ion-grid>\n\n  </div>\n\n\n\n  <!-- CADASTRAR NOVA SESSAO -->\n\n  <ion-item-divider color="info" text-center>\n\n    <strong>Cadastrar Sessão</strong>\n\n  </ion-item-divider>\n\n  <form [formGroup]="form" padding>\n\n    <ion-grid>\n\n      <ion-row align-items-center justify-content-center>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Palestrante da sessão</ion-label>\n\n          <ion-item>\n\n            <ion-select formControlName="speakerId">\n\n              <ion-option *ngFor="let speaker of allSpeakers" [value]="speaker?.id">{{ speaker?.name }}</ion-option>\n\n            </ion-select>\n\n          </ion-item>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Título da sessão</ion-label>\n\n          <div class="mh-16">\n\n            <ion-input type="text" value="{{ newSession?.title }}" formControlName="title"></ion-input>\n\n          </div>\n\n        </ion-col>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <ion-label stacked>Descrição</ion-label>\n\n          <div class="mh-16">\n\n            <ion-input type="text" value="{{ newSession?.description }}" formControlName="description"></ion-input>\n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row padding>\n\n        <ion-col col-12 col-sm-12 col-md-12>\n\n          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR SESSÃO</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-interactive-section\event-interactive-section.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__event_speaker_event_speaker_service__["a" /* SpeakerService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__node_modules_angular_forms__["a" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__event_speaker_event_speaker_service__["a" /* SpeakerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__event_speaker_event_speaker_service__["a" /* SpeakerService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__event_interactive_section_service__["a" /* InteractiveSectionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__event_interactive_section_service__["a" /* InteractiveSectionsService */]) === "function" && _e || Object])
     ], EventInteractiveSectionPage);
     return EventInteractiveSectionPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=event-interactive-section.js.map
 
 /***/ }),
 
-/***/ 301:
+/***/ 297:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment_environment__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var EventsService = /** @class */ (function () {
+    function EventsService(http, _platform) {
+        this.http = http;
+        this._platform = _platform;
+    }
+    EventsService.prototype.getEvents = function () {
+        return this.http
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/events");
+    };
+    EventsService.prototype.getEventById = function (id) {
+        return this.http
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/events/" + id);
+    };
+    EventsService.prototype.addEvent = function (data) {
+        return this.http
+            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/events/", data);
+    };
+    EventsService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]])
+    ], EventsService);
+    return EventsService;
+}());
+
+//# sourceMappingURL=event-menu.service.js.map
+
+/***/ }),
+
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_module__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_module__ = __webpack_require__(435);
 
 window["$"] = __WEBPACK_IMPORTED_MODULE_0_jquery__;
 window["jQuery"] = __WEBPACK_IMPORTED_MODULE_0_jquery__;
@@ -855,22 +938,22 @@ Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 434:
+/***/ 435:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(482);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(294);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(506);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(507);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angularfire2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_firestore__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_firestore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_angularfire2_firestore__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__environment_environment__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__environment_environment__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(285);
@@ -884,17 +967,21 @@ Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_event_speaker_event_speaker__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_event_sponsor_event_sponsor__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_event_register_questions_event_register_questions__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_event_speaker_event_speaker_service__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_event_register_questions_event_register_questions_service__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_froala_editor_js_froala_editor_pkgd_min_js__ = __webpack_require__(507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_froala_editor_js_froala_editor_pkgd_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_froala_editor_js_froala_editor_pkgd_min_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_angular_froala_wysiwyg__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_event_menu_event_menu_service__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_event_speaker_event_speaker_service__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_event_register_questions_event_register_questions_service__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_event_interactive_section_event_interactive_section_service__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_froala_editor_js_froala_editor_pkgd_min_js__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_froala_editor_js_froala_editor_pkgd_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_froala_editor_js_froala_editor_pkgd_min_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angular_froala_wysiwyg__ = __webpack_require__(510);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -949,8 +1036,8 @@ var AppModule = /** @class */ (function () {
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["AngularFireModule"].initializeApp(__WEBPACK_IMPORTED_MODULE_8__environment_environment__["b" /* Environment */].firebase),
-                __WEBPACK_IMPORTED_MODULE_25_angular_froala_wysiwyg__["a" /* FroalaEditorModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_25_angular_froala_wysiwyg__["b" /* FroalaViewModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_27_angular_froala_wysiwyg__["a" /* FroalaEditorModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_27_angular_froala_wysiwyg__["b" /* FroalaViewModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_7_angularfire2_firestore__["AngularFirestoreModule"].enablePersistence(),
                 __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClientModule */],
             ],
@@ -970,11 +1057,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_20__pages_event_sponsor_event_sponsor__["a" /* EventSponsorPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_22__pages_event_speaker_event_speaker_service__["a" /* SpeakerService */],
-                __WEBPACK_IMPORTED_MODULE_23__pages_event_register_questions_event_register_questions_service__["a" /* QuestionsService */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_event_menu_event_menu_service__["a" /* EventsService */],
+                __WEBPACK_IMPORTED_MODULE_25__pages_event_interactive_section_event_interactive_section_service__["a" /* InteractiveSectionsService */],
+                __WEBPACK_IMPORTED_MODULE_24__pages_event_register_questions_event_register_questions_service__["a" /* QuestionsService */],
+                __WEBPACK_IMPORTED_MODULE_23__pages_event_speaker_event_speaker_service__["a" /* SpeakerService */],
+                __WEBPACK_IMPORTED_MODULE_13__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__["a" /* StatusBar */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
             ]
         })
@@ -986,13 +1075,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 482:
+/***/ 483:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(283);
@@ -1028,7 +1117,88 @@ var MyApp = /** @class */ (function () {
 
 //# sourceMappingURL=app.component.js.map
 
+/***/ }),
+
+/***/ 508:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InteractiveSectionsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment_environment__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(15);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var InteractiveSectionsService = /** @class */ (function () {
+    function InteractiveSectionsService(http, _platform) {
+        this.http = http;
+        this._platform = _platform;
+    }
+    InteractiveSectionsService.prototype.getSections = function () {
+        return this.http
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/sections");
+    };
+    InteractiveSectionsService.prototype.getSectionById = function (id) {
+        return this.http
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/sections/" + id);
+    };
+    InteractiveSectionsService.prototype.addSection = function (data) {
+        return this.http
+            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/sections/", data);
+    };
+    InteractiveSectionsService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]])
+    ], InteractiveSectionsService);
+    return InteractiveSectionsService;
+}());
+
+//# sourceMappingURL=event-interactive-section.service.js.map
+
+/***/ }),
+
+/***/ 68:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return API; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Environment; });
+// https://elo-api.azurewebsites.net/swagger
+// https://elo-api.azurewebsites.net/v1/questions
+var API = {
+    dev: "http://localhost:8100/assets/json",
+    baseDev: "/elo-api",
+    prod: "https://elo-api.azurewebsites.net/v1",
+    base: "https://elo-api.azurewebsites.net/v1",
+    proxyUrl: "https://elo-api.azurewebsites.net/v1",
+};
+var Environment = {
+    production: false,
+    firebase: {
+        apiKey: "AIzaSyAYdhtGQER6QoNs6txa-UwAy1l526S7V5I",
+        authDomain: "elo-eventos.firebaseapp.com",
+        databaseURL: "https://elo-eventos.firebaseio.com",
+        projectId: "elo-eventos",
+        storageBucket: "elo-eventos.appspot.com",
+        messagingSenderId: "36831031378"
+    }
+};
+//# sourceMappingURL=environment.js.map
+
 /***/ })
 
-},[301]);
+},[302]);
 //# sourceMappingURL=main.js.map

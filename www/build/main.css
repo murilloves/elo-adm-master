@@ -25762,6 +25762,84 @@ ion-col.col.ellipsis {
   text-overflow: ellipsis;
 }
 
+.fr-wrapper div a {
+  display: none !important;
+}
+
+page-event-speaker {
+  /* Esconde o input */
+  /* Aparência que terá o seletor de arquivo */
+}
+
+page-event-speaker input.text-input {
+  margin: 13px 0px;
+  width: 100%;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+
+page-event-speaker img.speakers-photo {
+  display: block;
+  border-radius: 0.5em;
+  width: 65%;
+  margin: auto;
+}
+
+page-event-speaker input[type='file'] {
+  display: none;
+}
+
+page-event-speaker ion-label.label {
+  white-space: initial;
+  line-height: 1.5em;
+}
+
+page-event-speaker label {
+  background-color: #4285F4;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 24px;
+}
+
+page-event-speaker hr {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+page-event-speaker .fr-toolbar .fr-command.fr-btn.fr-dropdown.fr-selection {
+  display: none;
+}
+
+page-event-speaker .fr-quick-insert.fr-visible {
+  display: none !important;
+}
+
+page-event-interactive-section input.text-input {
+  margin: 13px 0px;
+  width: 100%;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+
+page-event-interactive-section ion-label.label {
+  white-space: initial;
+  line-height: 1.5em;
+}
+
+page-event-interactive-section ion-select {
+  max-width: 80% !important;
+}
+
+page-event-interactive-section .select-ios .select-icon {
+  position: absolute !important;
+  margin-left: 67vw !important;
+}
+
 page-event-interactive-section hr {
   width: 100%;
   border-bottom: 1px solid #eee;

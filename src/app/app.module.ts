@@ -25,8 +25,10 @@ import { EventSpeakerPage } from '../pages/event-speaker/event-speaker';
 import { EventSponsorPage } from '../pages/event-sponsor/event-sponsor';
 import { EventRegisterQuestionsPage } from '../pages/event-register-questions/event-register-questions';
 
+import { EventsService } from '../pages/event-menu/event-menu.service';
 import { SpeakerService } from '../pages/event-speaker/event-speaker.service';
 import { QuestionsService } from '../pages/event-register-questions/event-register-questions.service';
+import { InteractiveSectionsService } from '../pages/event-interactive-section/event-interactive-section.service';
 
 // Import Froala Editor // and // Import Angular2 plugin.
 import "froala-editor/js/froala_editor.pkgd.min.js";
@@ -72,11 +74,13 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EventSponsorPage
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
     Camera,
-    SpeakerService,
+    EventsService,
+    InteractiveSectionsService,
     QuestionsService,
+    SpeakerService,
+    SplashScreen,
+    StatusBar,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,4 +1,26 @@
 page-event-interactive-section {
+    input.text-input {
+        margin: 13px 0px;
+        width: 100%;
+        padding: 0;
+        border: 1px solid #ccc;
+        border-radius: 0.5em;
+        padding: 0.5em;
+    }
+
+    ion-label.label {
+        white-space: initial;
+        line-height: 1.5em;
+    }
+
+    ion-select {
+        max-width: 80% !important;
+    }
+    .select-ios .select-icon {
+        position: absolute !important;
+        margin-left: 67vw !important;
+    }
+
     hr {
         width: 100%;
         border-bottom: 1px solid #eee;

@@ -16,8 +16,9 @@ export class EventRegisterQuestionsPage {
 
   speaker;
   speakerId;
+  session;
   initialLoading = true;
-  allQuestions;
+  allQuestions = null;
 
   constructor(
     public navCtrl: NavController,
@@ -26,8 +27,8 @@ export class EventRegisterQuestionsPage {
     private questionsService: QuestionsService
   ) {
     this.event = this.navParams.get('event');
-    this.speaker = this.navParams.get('speaker');
-    console.log('this.speaker', this.speaker);
+    this.session = this.navParams.get('session');
+    console.log('this.session', this.session);
     // this.getSpeakerById();
     this.getAllQuestionsBySpeaker();
   }
@@ -41,14 +42,15 @@ export class EventRegisterQuestionsPage {
   //   }
   
   getAllQuestionsBySpeaker() {
-    // this.questionsService.getQuestionsBySpeakerId(this.speakerId)
-    //   .subscribe( response => {
-      //     this.initialLoading = false;
-      //     this.allQuestions = response;
-      //     console.log(this.allQuestions);
-      //   }, error {
-      //     Ocorreu um erro ao buscar as perguntas deste palestrante. Tentar novamente?
-      // });
+    this.questionsService.getQuestionById(this.speakerId)
+      .subscribe( response => {
+          this.initialLoading = false;
+          this.allQuestions = response;
+          console.log('this.allQuestions', this.allQuestions);
+        // }
+        // , error {
+          // Ocorreu um erro ao buscar as perguntas deste palestrante. Tentar novamente?
+      });
   }
 
   ionViewDidLoad() {

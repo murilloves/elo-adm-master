@@ -14,17 +14,22 @@ export class QuestionsService {
 
     getQuestions(): Observable < Object > {
         return this.http
-            .get(`${API.baseDev}/questions`);
+            .get(`${API.base}/questions`);
     }
 
     getQuestionById(id): Observable < Object > {
         return this.http
-            .get(`${API.baseDev}/questions/${id}`);
+            .get(`${API.base}/questions/${id}`);
+    }
+
+    getQuestionsBySessionId(sessionId): Observable < Object > {
+        return this.http
+            .get(`${API.base}/questions/${sessionId}`);
     }
 
     addQuestion(data) {
         return this.http
-            .post(`${API.baseDev}/questions/`, data);
+            .post(`${API.base}/questions/`, data);
     }
 
     getQuestionsHardCode(): Observable < Object > {

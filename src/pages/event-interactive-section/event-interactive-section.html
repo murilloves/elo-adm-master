@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- PALESTRANTES CADASTRADOS -->
+  <!-- SESSOES CADASTRADAS -->
   <ion-item-divider color="info" text-center>
     <strong>Sessão Interativa</strong>
   </ion-item-divider>
@@ -16,30 +16,66 @@
     <ion-row padding *ngIf="initialLoading" text-center>
       <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>
     </ion-row>
-    <ion-row padding *ngIf="!allSpeakers && !initialLoading" text-center>
-      <span>Nenhum palestrante cadastrado para este evento ainda.</span>
+    <ion-row padding *ngIf="!initialLoading && allInterativeSections && allInterativeSections.length === 0" text-center>
+      <span>Nenhuma Sessão Interativa cadastrada até o momento.</span>
     </ion-row>
-    <ion-grid *ngIf="allSpeakers && !initialLoading" class="mb-1">
+    <ion-grid *ngIf="!initialLoading && allInterativeSections && allInterativeSections.length > 0" class="mb-1">
       <ion-row>
         <ion-col>
-          <strong>Palestrante</strong>
+          <strong>Título</strong>
         </ion-col>
         <ion-col>
-          <strong>Tema</strong>
+          <strong>Descrição</strong>
         </ion-col>
       </ion-row>
       <hr />
       <div>
-        <ion-row class="table-striped" *ngFor="let speaker of allSpeakers" (click)="goToQuestionsSection(speaker)">
+        <ion-row class="table-striped" *ngFor="let interactiveSection of allInterativeSections" (click)="goToQuestionsSection(interactiveSection)">
           <ion-col class="ellipsis">
-            {{ speaker.name }}
+            {{ interactiveSection.title }}
           </ion-col>
           <ion-col class="ellipsis">
-            {{ speaker.detail }}
+            {{ interactiveSection.description }}
           </ion-col>
         </ion-row>
       </div>
       <hr />
     </ion-grid>
   </div>
+
+  <!-- CADASTRAR NOVA SESSAO -->
+  <ion-item-divider color="info" text-center>
+    <strong>Cadastrar Sessão</strong>
+  </ion-item-divider>
+  <form [formGroup]="form" padding>
+    <ion-grid>
+      <ion-row align-items-center justify-content-center>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked>Palestrante da sessão</ion-label>
+          <ion-item>
+            <ion-select formControlName="speakerId">
+              <ion-option *ngFor="let speaker of allSpeakers" [value]="speaker?.id">{{ speaker?.name }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked>Título da sessão</ion-label>
+          <div class="mh-16">
+            <ion-input type="text" value="{{ newSession?.title }}" formControlName="title"></ion-input>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked>Descrição</ion-label>
+          <div class="mh-16">
+            <ion-input type="text" value="{{ newSession?.description }}" formControlName="description"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row padding>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR SESSÃO</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
