@@ -75,7 +75,7 @@
         <button ion-button class="addRemoveOption" (click)="addOption()"><i class="fa fa-plus"></i></button>
         <button ion-button class="addRemoveOption danger" (click)="removeOption()" [disabled]="optionsArray.length <= 1"><i class="fa fa-minus"></i></button>
       </ion-col>
-      <ion-row padding>
+      <ion-row padding class="w-100">
         <ion-col col-12 col-md-12>
           <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR QUESTÃO</button>
         </ion-col>
