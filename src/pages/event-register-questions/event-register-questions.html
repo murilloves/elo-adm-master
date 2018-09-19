@@ -71,13 +71,13 @@
           </ion-row>
         </div>
       </ion-col>
-      <ion-col col-12>
+      <ion-col col-12 padding>
         <button ion-button class="addRemoveOption" (click)="addOption()"><i class="fa fa-plus"></i></button>
         <button ion-button class="addRemoveOption danger" (click)="removeOption()" [disabled]="optionsArray.length <= 1"><i class="fa fa-minus"></i></button>
       </ion-col>
       <ion-row padding>
         <ion-col col-12 col-md-12>
-          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR SESSÃO</button>
+          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR QUESTÃO</button>
         </ion-col>
       </ion-row>
     </ion-row>
