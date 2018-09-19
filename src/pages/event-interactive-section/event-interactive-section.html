@@ -30,7 +30,7 @@
       </ion-row>
       <hr />
       <div>
-        <ion-row class="table-striped" *ngFor="let interactiveSection of allInterativeSections" (click)="goToQuestionsSection(interactiveSection)">
+        <ion-row class="table-striped pointer" *ngFor="let interactiveSection of allInterativeSections" (click)="goToQuestionsSection(interactiveSection)">
           <ion-col class="ellipsis">
             {{ interactiveSection.title }}
           </ion-col>

@@ -28,16 +28,59 @@
         </ion-col>
       </ion-row>
       <hr />
-      <ion-row class="table-striped" *ngFor="let question of allQuestions" (click)="goToQuestionsSection()">
+      <ion-row class="table-striped" *ngFor="let question of allQuestions" (click)="goToQuestionsSection(question.id)">
         <ion-col class="ellipsis">
-          {{ question.name }}
+          {{ question.sequence }}
         </ion-col>
         <ion-col class="ellipsis">
-          {{ question.detail }}
+          {{ question.title }}
         </ion-col>
       </ion-row>
       <hr />
     </ion-grid>
   </div>
+  <ion-item-divider color="info" text-center>
+    Cadastrar pergunta
+  </ion-item-divider>
+  <form [formGroup]="form" padding>
+    <ion-row class="mb-1">
+      <ion-col col-12 col-md-12>
+        <ion-label stacked>Título da pergunta</ion-label>
+        <div class="mh-16">
+          <ion-input type="text" value="{{ newQuestion?.title }}" formControlName="title"></ion-input>
+        </div>
+      </ion-col>
+      <ion-col col-12 col-md-12>
+        <ion-label stacked>Sequência (número da pergunta)</ion-label>
+        <div class="mh-16">
+          <ion-input type="number" value="{{ newQuestion?.sequence }}" min="1" formControlName="sequence"></ion-input>
+        </div>
+      </ion-col>
+      <ion-col col-12 col-md-12>
+        <ion-label stacked>Descrição</ion-label>
+        <div class="mh-16">
+          <ion-input type="text" value="{{ newQuestion?.description }}" formControlName="description"></ion-input>
+        </div>
+      </ion-col>
+      <ion-col col-12 col-md-12>
+        <ion-label stacked><strong>Opções.</strong> Para marcar a opção correta, clique sobre a letra correspondente</ion-label>
+        <div class="mh-16" *ngFor="let option of optionsArray">
+          <ion-row>
+            <div class="option-letter" (click)="updateCorrect(option.letter)"><span [class.correct]="option.correct">( {{ option.letter }} )</span></div>
+            <ion-input class="question-option-description" type="text" value="{{ option?.description }}"></ion-input>
+          </ion-row>
+        </div>
+      </ion-col>
+      <ion-col col-12>
+        <button ion-button class="addRemoveOption" (click)="addOption()"><i class="fa fa-plus"></i></button>
+        <button ion-button class="addRemoveOption danger" (click)="removeOption()" [disabled]="optionsArray.length <= 1"><i class="fa fa-minus"></i></button>
+      </ion-col>
+      <ion-row padding>
+        <ion-col col-12 col-md-12>
+          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR SESSÃO</button>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+  </form>
 
 </ion-content>

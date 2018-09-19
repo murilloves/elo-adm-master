@@ -44,6 +44,12 @@ ion-row.table-striped {
 ion-row.table-striped:nth-child(even) {
     background-color: #f5f5f5
 }
+ion-row.table-striped.pointer:hover {
+    background-color: #f0f0f0;
+}
+ion-row.table-striped.pointer {
+    cursor: pointer;
+}
 
 ion-col.col.ellipsis {
     white-space: nowrap;
