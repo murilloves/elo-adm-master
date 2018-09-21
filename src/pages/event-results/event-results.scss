@@ -1,0 +1,30 @@
+page-event-results {
+    .question-title {
+        font-size: 1.5em;
+    }
+
+    ion-row.table-striped.row:hover {
+        background-color: #58606f0a;
+    }
+
+    button.actInact.button.button-md.button-default.button-default-md.active {
+        background-color: #00C851;
+    }
+    button.actInact.button.button-md.button-default.button-default-md.active:hover {
+        background-color: #00B841;
+    }
+
+    button.actInact.button.button-md.button-default.button-default-md.inactive {
+        background-color: #4B515D;
+    }
+    button.actInact.button.button-md.button-default.button-default-md.inactive:hover {
+        background-color: #3B514D;
+    }
+
+    button.showCharts.button.button-md.button-default.button-default-md {
+        background-color: #ffbb33;
+    }
+    button.showCharts.button.button-md.button-default.button-default-md:hover {
+        background-color: #fab728;
+    }
+}

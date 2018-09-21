@@ -3,7 +3,6 @@ import { EventModel } from '../../models/event.model';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '../../../node_modules/@angular/forms';
 
-import { SpeakerService } from '../event-speaker/event-speaker.service';
 import { QuestionsService } from '../event-register-questions/event-register-questions.service';
 
 @IonicPage()

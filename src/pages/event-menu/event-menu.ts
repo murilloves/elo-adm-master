@@ -6,6 +6,7 @@ import { EventSponsorPage } from '../event-sponsor/event-sponsor';
 import { EventSpeakerPage } from '../event-speaker/event-speaker';
 import { EventSchedulePage } from '../event-schedule/event-schedule';
 import { EventInteractiveSectionPage } from '../event-interactive-section/event-interactive-section';
+import { EventResultsPage } from '../event-results/event-results';
 import { EventsService } from './event-menu.service';
 
 @Component({
@@ -62,5 +63,9 @@ export class EventMenuPage {
 
   interactiveSection() {
     this.navCtrl.push(EventInteractiveSectionPage, { event: this.event });
+  }
+
+  results() {
+    this.navCtrl.push(EventResultsPage, { event: this.event });
   }
 }

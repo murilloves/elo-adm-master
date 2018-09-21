@@ -32,6 +32,11 @@ export class QuestionsService {
             .post(`${API.base}/questions/`, data);
     }
 
+    activateQuestion(id): Observable < Object > {
+        return this.http
+            .post(`${API.base}/questions/${id}/activate`, '');
+    }
+
     getQuestionsHardCode(): Observable < Object > {
         return this.http
             .get(`${API.dev}/questions.json`);

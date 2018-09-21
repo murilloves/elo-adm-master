@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{ event?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="padding-question">
+    <div class="header-buttons"></div>
+    <ion-row>
+      <div col-12 col-md-6>
+        <strong class="font-sm">
+          <div class="title">{{ question?.title }}</div>
+          <div class="subtitle">{{ question?.subtitle }}</div>
+        </strong>
+      </div>
+      <div col-12 col-md-6 text-right>
+        <button ion-button class="btn-secondary" (click)="increaseFontSize(false)">
+          <i class="fa fa-sort-desc"></i>&nbsp;<i class="fa fa-font"></i>
+        </button>
+        <button ion-button class="btn-secondary" (click)="increaseFontSize(true)">
+          <i class="fa fa-sort-asc"></i>&nbsp;<i class="fa fa-font"></i>
+        </button>
+      </div>
+    </ion-row>
+    <div class="description" [innerHTML]="question?.description"></div>
+    <ion-row *ngFor="let option of question?.options" [class.correct]="option.correct && showCorrectAnswer">
+      <div class="option-desc pb-12">
+        ( {{ option?.letter }} ) &nbsp; {{ option.description }}
+      </div>
+    </ion-row>
+  </div>
+</ion-content>

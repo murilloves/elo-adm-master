@@ -1,0 +1,33 @@
+page-event-view-question {
+    font-size: 24px;
+
+    // .tabbar.show-tabbar {
+    //     display: none;
+    // }
+
+    .padding-question {
+        padding-top: 32px;
+        padding-bottom: 32px;
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+
+    button.btn-secondary.button.button-md.button-default.button-default-md {
+        background-color: #fafafa;
+        border-radius: 2px;
+        color: #555;
+    }
+    button.btn-secondary.button.button-md.button-default.button-default-md:hover {
+        background-color: #f5f5f5;
+        border-radius: 2px;
+        color: #212121;
+    }
+
+    .font-sm {
+        font-size: 0.8em;
+    }
+
+    .pb-12 {
+        padding-bottom: 12px;
+    }
+}

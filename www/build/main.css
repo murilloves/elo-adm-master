@@ -25847,6 +25847,38 @@ page-event-register-questions ion-col.innerHTML p {
   margin: 0px;
 }
 
+page-event-results .question-title {
+  font-size: 1.5em;
+}
+
+page-event-results ion-row.table-striped.row:hover {
+  background-color: #58606f0a;
+}
+
+page-event-results button.actInact.button.button-md.button-default.button-default-md.active {
+  background-color: #00C851;
+}
+
+page-event-results button.actInact.button.button-md.button-default.button-default-md.active:hover {
+  background-color: #00B841;
+}
+
+page-event-results button.actInact.button.button-md.button-default.button-default-md.inactive {
+  background-color: #4B515D;
+}
+
+page-event-results button.actInact.button.button-md.button-default.button-default-md.inactive:hover {
+  background-color: #3B514D;
+}
+
+page-event-results button.showCharts.button.button-md.button-default.button-default-md {
+  background-color: #ffbb33;
+}
+
+page-event-results button.showCharts.button.button-md.button-default.button-default-md:hover {
+  background-color: #fab728;
+}
+
 page-event-speaker {
   /* Esconde o input */
   /* Aparência que terá o seletor de arquivo */
@@ -25896,6 +25928,37 @@ page-event-speaker .fr-toolbar .fr-command.fr-btn.fr-dropdown.fr-selection {
 
 page-event-speaker .fr-quick-insert.fr-visible {
   display: none !important;
+}
+
+page-event-view-question {
+  font-size: 24px;
+}
+
+page-event-view-question .padding-question {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+page-event-view-question button.btn-secondary.button.button-md.button-default.button-default-md {
+  background-color: #fafafa;
+  border-radius: 2px;
+  color: #555;
+}
+
+page-event-view-question button.btn-secondary.button.button-md.button-default.button-default-md:hover {
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  color: #212121;
+}
+
+page-event-view-question .font-sm {
+  font-size: 0.8em;
+}
+
+page-event-view-question .pb-12 {
+  padding-bottom: 12px;
 }
 
 page-login .btn-entrar {

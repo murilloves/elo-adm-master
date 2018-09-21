@@ -16,6 +16,7 @@ import { ContactPage } from '../pages/contact/contact';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 import { LoginPage } from '../pages/login/login';
 import { EventMenuPage } from '../pages/event-menu/event-menu';
 import { EventInfoPage } from '../pages/event-info/event-info';
@@ -24,6 +25,9 @@ import { EventSchedulePage } from '../pages/event-schedule/event-schedule';
 import { EventSpeakerPage } from '../pages/event-speaker/event-speaker';
 import { EventSponsorPage } from '../pages/event-sponsor/event-sponsor';
 import { EventRegisterQuestionsPage } from '../pages/event-register-questions/event-register-questions';
+import { EventResultsPage } from '../pages/event-results/event-results';
+import { EventViewQuestionPage } from '../pages/event-view-question/event-view-question';
+import { EventViewAnswersPage } from '../pages/event-view-answers/event-view-answers';
 
 import { EventsService } from '../pages/event-menu/event-menu.service';
 import { SpeakerService } from '../pages/event-speaker/event-speaker.service';
@@ -45,9 +49,12 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EventInfoPage,
     EventInteractiveSectionPage,
     EventRegisterQuestionsPage,
+    EventResultsPage,
     EventSchedulePage,
     EventSpeakerPage,
-    EventSponsorPage
+    EventSponsorPage,
+    EventViewAnswersPage,
+    EventViewQuestionPage
   ],
   imports: [
     BrowserModule,
@@ -69,9 +76,12 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EventInfoPage,
     EventInteractiveSectionPage,
     EventRegisterQuestionsPage,
+    EventResultsPage,
     EventSchedulePage,
     EventSpeakerPage,
-    EventSponsorPage
+    EventSponsorPage,
+    EventViewAnswersPage,
+    EventViewQuestionPage
   ],
   providers: [
     Camera,

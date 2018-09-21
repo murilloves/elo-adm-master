@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 513:
+/***/ 519:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventRegisterQuestionsPageModule", function() { return EventRegisterQuestionsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventViewQuestionPageModule", function() { return EventViewQuestionPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_register_questions__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_view_question__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EventRegisterQuestionsPageModule = /** @class */ (function () {
-    function EventRegisterQuestionsPageModule() {
+var EventViewQuestionPageModule = /** @class */ (function () {
+    function EventViewQuestionPageModule() {
     }
-    EventRegisterQuestionsPageModule = __decorate([
+    EventViewQuestionPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__event_register_questions__["a" /* EventRegisterQuestionsPage */],
+                __WEBPACK_IMPORTED_MODULE_2__event_view_question__["a" /* EventViewQuestionPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__event_register_questions__["a" /* EventRegisterQuestionsPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__event_view_question__["a" /* EventViewQuestionPage */]),
             ],
         })
-    ], EventRegisterQuestionsPageModule);
-    return EventRegisterQuestionsPageModule;
+    ], EventViewQuestionPageModule);
+    return EventViewQuestionPageModule;
 }());
 
-//# sourceMappingURL=event-register-questions.module.js.map
+//# sourceMappingURL=event-view-question.module.js.map
 
 /***/ })
 
