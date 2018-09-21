@@ -14,16 +14,19 @@ export class EventViewAnswersPage {
   public event: EventModel;
   public question: EventModel;
 
-  chartInfo = [
-    { option: 'a', quantity: 88 },
-    { option: 'b', quantity: 66 },
-    { option: 'c', quantity: 77 },
-    { option: 'd', quantity: 44 },
-    { option: 'e', quantity: 11 },
-    { option: 'f', quantity: 60 },
-    { option: 'g', quantity: 23 },
-    { option: 'h', quantity: 119 },
-  ];
+  initialLoading = true;
+
+  // chartInfo = [
+  //   { letter: 'a', quantity: 88 },
+  //   { letter: 'b', quantity: 66 },
+  //   { letter: 'c', quantity: 77 },
+  //   { letter: 'd', quantity: 44 },
+  //   { letter: 'e', quantity: 11 },
+  //   { letter: 'f', quantity: 60 },
+  //   { letter: 'g', quantity: 23 },
+  //   { letter: 'h', quantity: 119 },
+  // ];
+  chartInfo;
   chartMatrix = [];
   totalAnswers;
   maxValue = [];
@@ -44,12 +47,36 @@ export class EventViewAnswersPage {
     this.event = this.navParams.get('event');
     this.question = this.navParams.get('question');
 
+    console.log(this.question);
+
     this.randomColorInit = Math.floor(Math.random() * this.colors.length);
   }
 
   ionViewDidLoad() {
-    this.putBlockHeight();
-    this.getTotals();
+    this.hideFooter(true);
+    this.getQuestionGraphInfo();
+  }
+
+  ionViewDidLeave() {
+    this.hideFooter(false);
+  }
+
+  hideFooter(flag) {
+    if (flag) {
+      document.getElementsByClassName('show-tabbar')[0]['style'].display = 'none';
+    } else {
+      document.getElementsByClassName('show-tabbar')[0]['style'].display = 'flex';
+    }
+  }
+
+  getQuestionGraphInfo() {
+    this.questionsService.getGraphQuestions(this.question['id'])
+      .subscribe( response => {
+        this.chartInfo = response;
+        this.putBlockHeight();
+        this.getTotals();
+        this.initialLoading = false;
+      });
   }
 
   putBlockHeight() {
