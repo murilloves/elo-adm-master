@@ -255,9 +255,12 @@ var EventResultsPage = /** @class */ (function () {
         });
     };
     EventResultsPage.prototype.activateOrDeactivate = function (question) {
-        this.questionsService.activateQuestion(question.id)
+        var data = {
+            id: question.id,
+            status: true
+        };
+        this.questionsService.activateQuestion(data)
             .subscribe(function (response) {
-            console.log(response);
         });
     };
     EventResultsPage.prototype.enterQuestion = function (question) {
@@ -270,11 +273,10 @@ var EventResultsPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-event-results',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-results\event-results.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title text-center>{{ event?.name }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <!-- <ion-item-divider color="info" text-center>\n      Perguntas da Sessão Interativa\n  </ion-item-divider> -->\n  <div padding>\n    <ion-row padding *ngIf="initialLoading" text-center>\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n    </ion-row>\n    <ion-row padding *ngIf="!initialLoading && allQuestions === null" text-center>\n      <span>Nenhuma pergunta cadastrada para esta sessão.</span>\n    </ion-row>\n    <ion-grid *ngIf="!initialLoading && allQuestions && allQuestions.length > 0" class="mb-1">\n      <ion-row>\n        <ion-col col-6 col-md-4 padding>\n          <strong>Título</strong>\n        </ion-col>\n        <ion-col col-6 col-md-6 padding>\n          <strong>Subtítulo</strong>\n        </ion-col>\n        <ion-col col-6 col-md-2 text-center padding>\n          <strong>Ações</strong>\n        </ion-col>\n      </ion-row>\n      <hr />\n      <ion-row class="table-striped" *ngFor="let question of allQuestions">\n        <ion-col col-6 col-md-4 padding class="ellipsis question-title">\n          {{ question.title }}\n        </ion-col>\n        <ion-col col-6 col-md-6 padding class="ellipsis question-title">\n          {{ question.subtitle }}\n        </ion-col>\n        <ion-col col-6 col-md-2 text-center>\n          <button ion-button class="actInact" (click)="activateOrDeactivate(question)"\n            [class.active]="question?.status" [class.inactive]="!question?.status">\n            <i class="fa" [class.fa-eye]="question?.status" [class.fa-eye-slash]="!question?.status"></i>\n          </button>\n          <button ion-button class="enter-question" (click)="enterQuestion(question)">\n            <!-- <i class="fa fa-file-text"></i> -->\n            <i class="fa fa-sign-in"></i>\n          </button>\n          <button ion-button class="showCharts" (click)="seeCharts(question)">\n            <i class="fa fa-bar-chart"></i>\n          </button>\n        </ion-col>\n        <!-- <ion-col class="ellipsis innerHTML" [innerHTML]="question.description"></ion-col> -->\n      </ion-row>\n      <hr />\n    </ion-grid>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-results\event-results.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__event_register_questions_event_register_questions_service__["a" /* QuestionsService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__event_register_questions_event_register_questions_service__["a" /* QuestionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__event_register_questions_event_register_questions_service__["a" /* QuestionsService */]) === "function" && _c || Object])
     ], EventResultsPage);
     return EventResultsPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=event-results.js.map
@@ -413,8 +415,6 @@ var EventViewAnswersPage = /** @class */ (function () {
     EventViewAnswersPage.prototype.getTotals = function () {
         this.totalAnswers = this.chartInfo.reduce(function (a, b) { return a + b.quantity; }, 0);
     };
-    // getPercentages() {
-    // }
     EventViewAnswersPage.prototype.putMatrixColumns = function (item) {
         this.chartMatrix.push(new Array(item.quantity));
     };
@@ -1495,9 +1495,9 @@ var QuestionsService = /** @class */ (function () {
         return this.http
             .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/questions/", data);
     };
-    QuestionsService.prototype.activateQuestion = function (id) {
+    QuestionsService.prototype.activateQuestion = function (data) {
         return this.http
-            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/questions/" + id + "/activate", '');
+            .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/questions/" + data.id + "/activate", data);
     };
     QuestionsService.prototype.getQuestionsHardCode = function () {
         return this.http
@@ -1505,10 +1505,10 @@ var QuestionsService = /** @class */ (function () {
     };
     QuestionsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]) === "function" && _b || Object])
     ], QuestionsService);
     return QuestionsService;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=event-register-questions.service.js.map

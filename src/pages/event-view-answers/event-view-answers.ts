@@ -83,10 +83,6 @@ export class EventViewAnswersPage {
     this.totalAnswers = this.chartInfo.reduce( (a, b) => a + b.quantity, 0);
   }
 
-  // getPercentages() {
-
-  // }
-
   putMatrixColumns(item) {
     this.chartMatrix.push(new Array(item.quantity));
   }

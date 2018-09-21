@@ -32,9 +32,9 @@ export class QuestionsService {
             .post(`${API.base}/questions/`, data);
     }
 
-    activateQuestion(id): Observable < Object > {
+    activateQuestion(data): Observable < Object > {
         return this.http
-            .post(`${API.base}/questions/${id}/activate`, '');
+            .post(`${API.base}/questions/${data.id}/activate`, data);
     }
 
     getQuestionsHardCode(): Observable < Object > {

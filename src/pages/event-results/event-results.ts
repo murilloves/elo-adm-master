@@ -42,9 +42,13 @@ export class EventResultsPage {
   }
 
   activateOrDeactivate(question) {
-    this.questionsService.activateQuestion(question.id)
+    const data = {
+      id: question.id,
+      status: true
+    }
+    this.questionsService.activateQuestion(data)
       .subscribe( response => {
-        console.log(response);
+        
       });
   }
 
