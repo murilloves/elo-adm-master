@@ -12,11 +12,13 @@ import { InteractiveSectionsService } from '../event-interactive-section/event-i
 export class EventRankingPage {
 
   public event: EventModel;
+  public questions: EventModel;
   public session: EventModel;
 
   initialLoading = true;
   listeners = null;
-  allInterativeSections;
+
+  numberOfQuestions;
 
   visible = true;
 
@@ -26,10 +28,24 @@ export class EventRankingPage {
     private interactiveSectionsService: InteractiveSectionsService,
   ) {
     this.event = this.navParams.get('event');
+    this.numberOfQuestions = this.navParams.get('questions').length;
   }
 
   ionViewDidLoad() {
+    this.hideFooter(true);
     this.getAllListenersByRanking();
+  }
+  
+  ionViewDidLeave() {
+    this.hideFooter(false);
+  }
+
+  hideFooter(flag) {
+    if (flag) {
+      document.getElementsByClassName('show-tabbar')[0]['style'].display = 'none';
+    } else {
+      document.getElementsByClassName('show-tabbar')[0]['style'].display = 'flex';
+    }
   }
 
   getAllListenersByRanking() {
@@ -37,13 +53,6 @@ export class EventRankingPage {
       .subscribe( response => {
         this.listeners = response;
         this.initialLoading = false;
-      });
-  }
-
-  getAllInterativeSections() {
-    this.interactiveSectionsService.getSections()
-      .subscribe( response => {
-        this.allInterativeSections = response;
       });
   }
 
