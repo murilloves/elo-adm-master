@@ -1,3 +1,60 @@
 page-event-view-answers {
+    font-size: 1.5em;
+    color: #454545;
 
+    .h-100 {
+        height: 100%;
+    }
+
+    .pl-pr-0 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .pt-1 {
+        padding-top: 1em;
+    }
+
+    .flex {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .mt-auto {
+        margin-top: auto !important;
+    }
+
+    .block-size {
+        width: 80%;
+        // height: 7vh;
+    }
+    
+    .block-pattern-size {
+        width: 80%;
+        height: 7vh;
+    }
+
+    .bg-mock-color {
+        background-color: bisque;
+    }
+    .c-gray {
+        color: #777;
+        font-weight: 100;
+    }
+    .font-regular {
+        font-weight: 400;
+    }
+    .bd-right {
+        border-right: 1px solid #ddd;
+    }
+    .pd-right {
+        padding-right: 1.6em;
+    }
+    .pdl-pdt {
+        padding-left: 12px;
+        padding-top: 12px;
+    }
+
+    .line-top {
+        border-top: 1px solid #ccc;
+    }
 }

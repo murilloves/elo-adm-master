@@ -25930,6 +25930,79 @@ page-event-speaker .fr-quick-insert.fr-visible {
   display: none !important;
 }
 
+page-event-view-answers {
+  font-size: 1.5em;
+  color: #454545;
+}
+
+page-event-view-answers .h-100 {
+  height: 100%;
+}
+
+page-event-view-answers .pl-pr-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+page-event-view-answers .pt-1 {
+  padding-top: 1em;
+}
+
+page-event-view-answers .flex {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -webkit-flex-direction: column !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+}
+
+page-event-view-answers .mt-auto {
+  margin-top: auto !important;
+}
+
+page-event-view-answers .block-size {
+  width: 80%;
+}
+
+page-event-view-answers .block-pattern-size {
+  width: 80%;
+  height: 7vh;
+}
+
+page-event-view-answers .bg-mock-color {
+  background-color: bisque;
+}
+
+page-event-view-answers .c-gray {
+  color: #777;
+  font-weight: 100;
+}
+
+page-event-view-answers .font-regular {
+  font-weight: 400;
+}
+
+page-event-view-answers .bd-right {
+  border-right: 1px solid #ddd;
+}
+
+page-event-view-answers .pd-right {
+  padding-right: 1.6em;
+}
+
+page-event-view-answers .pdl-pdt {
+  padding-left: 12px;
+  padding-top: 12px;
+}
+
+page-event-view-answers .line-top {
+  border-top: 1px solid #ccc;
+}
+
 page-event-view-question {
   font-size: 24px;
 }
