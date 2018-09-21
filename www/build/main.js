@@ -1178,16 +1178,20 @@ var InteractiveSectionsService = /** @class */ (function () {
         return this.http
             .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/sections/" + id);
     };
+    InteractiveSectionsService.prototype.getRankingBySectionId = function (id) {
+        return this.http
+            .get(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/sections/" + id + "/ranking");
+    };
     InteractiveSectionsService.prototype.addSection = function (data) {
         return this.http
             .post(__WEBPACK_IMPORTED_MODULE_2__environment_environment__["a" /* API */].base + "/sections/", data);
     };
     InteractiveSectionsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Platform */]) === "function" && _b || Object])
     ], InteractiveSectionsService);
     return InteractiveSectionsService;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=event-interactive-section.service.js.map
@@ -1472,6 +1476,7 @@ var MyApp = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventRankingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_interactive_section_event_interactive_section_service__ = __webpack_require__(300);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1483,12 +1488,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-// import {} from '';
+
 var EventRankingPage = /** @class */ (function () {
-    function EventRankingPage(navCtrl, navParams) {
+    function EventRankingPage(navCtrl, navParams, interactiveSectionsService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.interactiveSectionsService = interactiveSectionsService;
         this.initialLoading = true;
+        this.listeners = null;
         this.visible = true;
         this.event = this.navParams.get('event');
     }
@@ -1496,15 +1503,28 @@ var EventRankingPage = /** @class */ (function () {
         this.getAllListenersByRanking();
     };
     EventRankingPage.prototype.getAllListenersByRanking = function () {
+        var _this = this;
+        this.interactiveSectionsService.getRankingBySectionId(this.session)
+            .subscribe(function (response) {
+            _this.listeners = response;
+            _this.initialLoading = false;
+        });
+    };
+    EventRankingPage.prototype.getAllInterativeSections = function () {
+        var _this = this;
+        this.interactiveSectionsService.getSections()
+            .subscribe(function (response) {
+            _this.allInterativeSections = response;
+        });
     };
     EventRankingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event-ranking',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-ranking\event-ranking.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title text-center>Ranking - {{ event?.name }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div padding>\n    <ion-row padding *ngIf="initialLoading" text-center>\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n    </ion-row>\n    <ion-grid *ngIf="true" class="mb-1">\n      <ion-row>\n        <ion-col col-6 col-md-6 padding>\n          <strong>Nome</strong>\n        </ion-col>\n        <ion-col col-6 col-md-4 padding>\n          <strong>CPF</strong>\n        </ion-col>\n        <ion-col col-6 col-md-2 text-center padding>\n          <strong>Acertos</strong>\n        </ion-col>\n      </ion-row>\n      <hr />\n      <ion-row class="table-striped">\n        <ion-col col-6 col-md-6 padding class="ellipsis question-title">\n          Pessoa\n        </ion-col>\n        <ion-col col-6 col-md-4 padding class="ellipsis question-title">\n          SêPêÉfe\n        </ion-col>\n        <ion-col col-6 col-md-2 text-center class="ellipsis question-title">\n          0/10\n        </ion-col>\n      </ion-row>\n      <hr />\n    </ion-grid>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-ranking\event-ranking.html"*/,
+            selector: 'page-event-ranking',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-ranking\event-ranking.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title text-center>Ranking de acertos da Sessão Interativa - {{ event?.name }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div padding>\n    <ion-row padding *ngIf="initialLoading" text-center>\n      <i class="fa fa-spinner fa-pulse fa-3x fa-fw m-auto"></i>\n    </ion-row>\n    <ion-grid *ngIf="true" class="mb-1">\n      <ion-row>\n        <ion-col col-6 col-md-1 padding>\n          <strong>#</strong>\n        </ion-col>\n        <ion-col col-6 col-md-6 padding>\n          <strong>Nome</strong>\n        </ion-col>\n        <ion-col col-6 col-md-3 padding>\n          <strong>CPF</strong>\n        </ion-col>\n        <ion-col col-6 col-md-2 text-center padding>\n          <strong>Acertos</strong>\n        </ion-col>\n      </ion-row>\n      <hr />\n      <ion-row class="table-striped" *ngFor="let listener of listeners; let index = index">\n        <ion-col col-6 col-md-1 padding class="ellipsis question-title">\n          {{ 1 + index }}\n        </ion-col>\n        <ion-col col-6 col-md-6 padding class="ellipsis question-title">\n          {{ listener?.name }}\n        </ion-col>\n        <ion-col col-6 col-md-3 padding class="ellipsis question-title">\n          {{ listener?.document }}\n        </ion-col>\n        <ion-col col-6 col-md-2 text-center class="ellipsis question-title">\n          {{ listener?.quantity }}/10\n        </ion-col>\n      </ion-row>\n      <hr />\n    </ion-grid>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-ranking\event-ranking.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__event_interactive_section_event_interactive_section_service__["a" /* InteractiveSectionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__event_interactive_section_event_interactive_section_service__["a" /* InteractiveSectionsService */]) === "function" && _c || Object])
     ], EventRankingPage);
     return EventRankingPage;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=event-ranking.js.map

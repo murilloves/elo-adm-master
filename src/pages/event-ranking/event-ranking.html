@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title text-center>Ranking - {{ event?.name }}</ion-title>
+    <ion-title text-center>Ranking de acertos da Sessão Interativa - {{ event?.name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,10 +14,13 @@
     </ion-row>
     <ion-grid *ngIf="true" class="mb-1">
       <ion-row>
+        <ion-col col-6 col-md-1 padding>
+          <strong>#</strong>
+        </ion-col>
         <ion-col col-6 col-md-6 padding>
           <strong>Nome</strong>
         </ion-col>
-        <ion-col col-6 col-md-4 padding>
+        <ion-col col-6 col-md-3 padding>
           <strong>CPF</strong>
         </ion-col>
         <ion-col col-6 col-md-2 text-center padding>
@@ -25,15 +28,18 @@
         </ion-col>
       </ion-row>
       <hr />
-      <ion-row class="table-striped">
-        <ion-col col-6 col-md-6 padding class="ellipsis question-title">
-          Pessoa
+      <ion-row class="table-striped" *ngFor="let listener of listeners; let index = index">
+        <ion-col col-6 col-md-1 padding class="ellipsis question-title">
+          {{ 1 + index }}
         </ion-col>
-        <ion-col col-6 col-md-4 padding class="ellipsis question-title">
-          SêPêÉfe
+        <ion-col col-6 col-md-6 padding class="ellipsis question-title">
+          {{ listener?.name }}
+        </ion-col>
+        <ion-col col-6 col-md-3 padding class="ellipsis question-title">
+          {{ listener?.document }}
         </ion-col>
         <ion-col col-6 col-md-2 text-center class="ellipsis question-title">
-          0/10
+          {{ listener?.quantity }}/10
         </ion-col>
       </ion-row>
       <hr />

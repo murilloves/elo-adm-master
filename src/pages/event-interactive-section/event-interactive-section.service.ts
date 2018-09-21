@@ -22,6 +22,11 @@ export class InteractiveSectionsService {
             .get(`${API.base}/sections/${id}`);
     }
 
+    getRankingBySectionId(id): Observable < Object > {
+        return this.http
+            .get(`${API.base}/sections/${id}/ranking`);
+    }
+
     addSection(data) {
         return this.http
             .post(`${API.base}/sections/`, data);

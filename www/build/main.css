@@ -25810,6 +25810,10 @@ page-event-interactive-section hr {
   border-bottom: 1px solid #eee;
 }
 
+page-event-ranking {
+  font-size: 1.5em;
+}
+
 page-event-register-questions input.text-input {
   margin: 13px 0px;
   width: 100%;
