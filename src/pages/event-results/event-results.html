@@ -43,17 +43,20 @@
             [class.active]="question?.status" [class.inactive]="!question?.status">
             <i class="fa" [class.fa-eye]="question?.status" [class.fa-eye-slash]="!question?.status"></i>
           </button>
-          <button ion-button class="enter-question" (click)="enterQuestion(question)">
-            <!-- <i class="fa fa-file-text"></i> -->
-            <i class="fa fa-sign-in"></i>
+          <button ion-button class="enter-question" (click)="goToDetailQuestionPage(question)">
+            <i class="fa fa-file-text"></i>
+            <!-- <i class="fa fa-sign-in"></i> -->
           </button>
-          <button ion-button class="showCharts" (click)="seeCharts(question)">
+          <button ion-button class="showCharts" (click)="goToChartsPage(question)">
             <i class="fa fa-bar-chart"></i>
           </button>
         </ion-col>
         <!-- <ion-col class="ellipsis innerHTML" [innerHTML]="question.description"></ion-col> -->
       </ion-row>
       <hr />
+      <button block-size ion-button class="btn-top-10" (click)="goToRankingPage()">
+        Ver ranking geral
+      </button>
     </ion-grid>
   </div>
 </ion-content>

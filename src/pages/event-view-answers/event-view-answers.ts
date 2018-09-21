@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { EventModel } from '../../models/event.model';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { ChartsModule } from 'ng2-charts';
-
 import { QuestionsService } from '../event-register-questions/event-register-questions.service';
 
 @IonicPage()
@@ -59,7 +57,7 @@ export class EventViewAnswersPage {
     setTimeout(() => {
       const elements = document.getElementsByClassName('block-size');
       Array.from(elements).forEach((element, index) => {
-        element.style.height = vh + 'vh';
+        element['style'].height = vh + 'vh';
       });
     }, 0);
   }

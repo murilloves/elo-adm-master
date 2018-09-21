@@ -28,6 +28,7 @@ import { EventRegisterQuestionsPage } from '../pages/event-register-questions/ev
 import { EventResultsPage } from '../pages/event-results/event-results';
 import { EventViewQuestionPage } from '../pages/event-view-question/event-view-question';
 import { EventViewAnswersPage } from '../pages/event-view-answers/event-view-answers';
+import { EventRankingPage } from '../pages/event-ranking/event-ranking';
 
 import { EventsService } from '../pages/event-menu/event-menu.service';
 import { SpeakerService } from '../pages/event-speaker/event-speaker.service';
@@ -48,6 +49,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EventMenuPage,
     EventInfoPage,
     EventInteractiveSectionPage,
+    EventRankingPage,
     EventRegisterQuestionsPage,
     EventResultsPage,
     EventSchedulePage,
@@ -75,6 +77,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EventMenuPage,
     EventInfoPage,
     EventInteractiveSectionPage,
+    EventRankingPage,
     EventRegisterQuestionsPage,
     EventResultsPage,
     EventSchedulePage,

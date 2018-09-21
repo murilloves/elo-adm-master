@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { EventViewQuestionPage } from '../event-view-question/event-view-question';
 import { EventViewAnswersPage } from '../event-view-answers/event-view-answers';
+import { EventRankingPage } from '../event-ranking/event-ranking';
 
 import { QuestionsService } from '../event-register-questions/event-register-questions.service';
 
@@ -52,11 +53,15 @@ export class EventResultsPage {
       });
   }
 
-  enterQuestion(question) {
+  goToDetailQuestionPage(question) {
     this.navCtrl.push(EventViewQuestionPage, { event: this.event, question: question });
   }
 
-  seeCharts(question) {
+  goToChartsPage(question) {
     this.navCtrl.push(EventViewAnswersPage, { event: this.event, question: question });
+  }
+
+  goToRankingPage() {
+    this.navCtrl.push(EventRankingPage, { event: this.event });
   }
 }

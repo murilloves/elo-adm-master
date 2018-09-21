@@ -25855,6 +25855,12 @@ page-event-results ion-row.table-striped.row:hover {
   background-color: #58606f0a;
 }
 
+page-event-results button.btn-top-10.button.button-md.button-default.button-default-md {
+  margin-top: 2em;
+  font-size: 1.7em;
+  height: 3em;
+}
+
 page-event-results button.actInact.button.button-md.button-default.button-default-md.active {
   background-color: #00C851;
 }
