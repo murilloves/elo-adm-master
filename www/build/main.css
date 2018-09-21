@@ -25939,13 +25939,21 @@ page-event-view-answers .h-100 {
   height: 100%;
 }
 
+page-event-view-answers .font-sm {
+  font-size: 0.6em;
+}
+
+page-event-view-answers .font-m {
+  font-size: 0.8em;
+}
+
 page-event-view-answers .pl-pr-0 {
   padding-left: 0px;
   padding-right: 0px;
 }
 
 page-event-view-answers .pt-1 {
-  padding-top: 1em;
+  padding-top: 0.6em;
 }
 
 page-event-view-answers .flex {

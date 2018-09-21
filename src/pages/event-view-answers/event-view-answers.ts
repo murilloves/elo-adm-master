@@ -17,17 +17,17 @@ export class EventViewAnswersPage {
   public question: EventModel;
 
   chartInfo = [
-    { option: 'a', quantity: 8 },
-    { option: 'b', quantity: 6 },
-    { option: 'c', quantity: 7 },
-    { option: 'd', quantity: 4 },
-    { option: 'e', quantity: 1 },
-    { option: 'f', quantity: 6 },
-    { option: 'd', quantity: 4 },
-    { option: 'e', quantity: 1 },
-    { option: 'f', quantity: 6 },
-    { option: 'g', quantity: 2 },
-    { option: 'h', quantity: 11 },
+    { option: 'a', quantity: 88 },
+    { option: 'b', quantity: 66 },
+    { option: 'c', quantity: 77 },
+    { option: 'd', quantity: 44 },
+    { option: 'e', quantity: 11 },
+    // { option: 'f', quantity: 6 },
+    // { option: 'd', quantity: 4 },
+    // { option: 'e', quantity: 1 },
+    { option: 'f', quantity: 60 },
+    { option: 'g', quantity: 23 },
+    { option: 'h', quantity: 119 },
   ];
   chartMatrix = [];
   totalAnswers;

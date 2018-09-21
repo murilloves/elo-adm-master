@@ -12,10 +12,10 @@
     <ion-row class="mt-auto">
       <div col class="col-zero mt-auto pl-pr-0 c-gray">
         <div *ngFor="let value of maxValue; let index = index">
-          <div text-right class="block-size bd-right pd-right">{{ maxValue.length - index }}</div>
+          <div text-right class="block-size bd-right pd-right font-sm">{{ maxValue.length - index }}</div>
         </div>
         <hr>
-        <div text-right class="block-pattern-size bd-right pd-right">0</div>
+        <div text-right class="block-pattern-size bd-right pd-right font-sm">0</div>
       </div>
       <div col class="columns mt-auto pl-pr-0 c-gray" *ngFor="let column of chartInfo; let index = index">
         <div text-center class="block-pattern-size font-regular">
@@ -28,7 +28,8 @@
         </div>
         <hr>
         <div text-center class="block-pattern-size pt-1">
-          ( {{ column.option }} ) <strong>{{ (100 * column.quantity / totalAnswers) | number : '1.2-2' }}%</strong>
+          <span class="font-m">( {{ column.option }} )</span>
+          &nbsp;<strong>{{ (100 * column.quantity / totalAnswers) | number : '1.2-2' }}%</strong>
         </div>
       </div>
     </ion-row>
