@@ -48,9 +48,7 @@ export class EventResultsPage {
       status: true
     }
     this.questionsService.activateQuestion(data)
-      .subscribe( response => {
-        
-      });
+      .subscribe( response => {});
   }
 
   goToDetailQuestionPage(question) {
@@ -62,6 +60,6 @@ export class EventResultsPage {
   }
 
   goToRankingPage() {
-    this.navCtrl.push(EventRankingPage, { event: this.event });
+    this.navCtrl.push(EventRankingPage, { event: this.event, questions: this.allQuestions });
   }
 }
