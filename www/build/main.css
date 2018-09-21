@@ -25691,6 +25691,10 @@ ion-navbar.toolbar {
   padding-top: 3em;
 }
 
+.pt-16 {
+  padding-top: 16px;
+}
+
 .m-16 {
   margin: 16px;
 }
@@ -25727,6 +25731,10 @@ ion-navbar.toolbar {
 .mv-16 {
   margin-top: 16px;
   margin-bottom: 16px;
+}
+
+.w-100 {
+  width: 100%;
 }
 
 .text-center {
@@ -25833,6 +25841,10 @@ page-event-register-questions .correct {
   border-radius: 7px;
   padding: 0.5em;
   color: white;
+}
+
+page-event-register-questions ion-col.innerHTML p {
+  margin: 0px;
 }
 
 page-event-speaker {

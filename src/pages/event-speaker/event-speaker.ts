@@ -126,7 +126,7 @@ export class EventSpeakerPage {
 
   save() {
     this.form.controls.image.setValue(this.myphoto);
-    console.log('Data', this.form);
+    // console.log('Data', this.form);
 
     this.speakerService.addSpeaker(this.form.value)
       .subscribe(response => {

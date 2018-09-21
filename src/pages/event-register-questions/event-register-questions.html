@@ -21,20 +21,24 @@
     <ion-grid *ngIf="!initialLoading && allQuestions && allQuestions.length > 0" class="mb-1">
       <ion-row>
         <ion-col>
-          <strong>Ordem (nº)</strong>
+          <strong>Título</strong>
         </ion-col>
         <ion-col>
-          <strong>Pergunta</strong>
+          <strong>Subtítulo</strong>
+        </ion-col>
+        <ion-col>
+          <strong>Descrição</strong>
         </ion-col>
       </ion-row>
       <hr />
       <ion-row class="table-striped" *ngFor="let question of allQuestions" (click)="goToQuestionsSection(question.id)">
         <ion-col class="ellipsis">
-          {{ question.sequence }}
-        </ion-col>
-        <ion-col class="ellipsis">
           {{ question.title }}
         </ion-col>
+        <ion-col class="ellipsis">
+          {{ question.subtitle }}
+        </ion-col>
+        <ion-col class="ellipsis innerHTML" [innerHTML]="question.description"></ion-col>
       </ion-row>
       <hr />
     </ion-grid>
@@ -51,6 +55,12 @@
         </div>
       </ion-col>
       <ion-col col-12 col-md-12>
+        <ion-label stacked>Subtítulo</ion-label>
+        <div class="mh-16">
+          <ion-input type="text" value="{{ newQuestion?.subtitle }}" formControlName="subtitle"></ion-input>
+        </div>
+      </ion-col>
+      <ion-col col-12 col-md-12>
         <ion-label stacked>Sequência (número da pergunta)</ion-label>
         <div class="mh-16">
           <ion-input type="number" value="{{ newQuestion?.sequence }}" min="1" formControlName="sequence"></ion-input>
@@ -59,7 +69,7 @@
       <ion-col col-12 col-md-12>
         <ion-label stacked>Descrição</ion-label>
         <div class="mh-16">
-          <ion-input type="text" value="{{ newQuestion?.description }}" formControlName="description"></ion-input>
+          <div class="pt-16" type="text" [froalaEditor] formControlName="description"></div>
         </div>
       </ion-col>
       <ion-col col-12 col-md-12>

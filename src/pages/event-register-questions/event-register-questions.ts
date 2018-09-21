@@ -53,6 +53,7 @@ export class EventRegisterQuestionsPage {
       sectionId: [this.session.id],
       speakerId: [this.session.speakerId],
       title: ['', Validators.required],
+      subtitle: ['', Validators.required],
       description: [''],
       sequence: ['', Validators.required],
     });
@@ -114,6 +115,8 @@ export class EventRegisterQuestionsPage {
 
     let data = this.form.value;
     data.options = this.optionsArray;
+
+    // console.log(this.form.value);
 
     this.questionsService.addQuestion(data)
       .subscribe(response => {

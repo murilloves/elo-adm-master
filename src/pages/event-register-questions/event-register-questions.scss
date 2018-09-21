@@ -30,4 +30,8 @@ page-event-register-questions {
         padding: 0.5em;
         color: white;
     }
+
+    ion-col.innerHTML p {
+        margin: 0px;
+    }
 }
