@@ -22,9 +22,6 @@ export class EventViewAnswersPage {
     { option: 'c', quantity: 77 },
     { option: 'd', quantity: 44 },
     { option: 'e', quantity: 11 },
-    // { option: 'f', quantity: 6 },
-    // { option: 'd', quantity: 4 },
-    // { option: 'e', quantity: 1 },
     { option: 'f', quantity: 60 },
     { option: 'g', quantity: 23 },
     { option: 'h', quantity: 119 },
@@ -38,6 +35,8 @@ export class EventViewAnswersPage {
   randomColorInit;
 
   magicNumber = 56;
+  divisorNumber;
+  factor = 5;
 
   constructor(
     public navCtrl: NavController,
@@ -46,15 +45,13 @@ export class EventViewAnswersPage {
   ) {
     this.event = this.navParams.get('event');
     this.question = this.navParams.get('question');
-    // console.log(this.question);
+
     this.randomColorInit = Math.floor(Math.random() * this.colors.length);
   }
 
   ionViewDidLoad() {
-    // this.getMax();
     this.putBlockHeight();
     this.getTotals();
-    // this.getPercentages();
   }
 
   putBlockHeight() {
@@ -75,12 +72,19 @@ export class EventViewAnswersPage {
         buffer = item.quantity;
       }
     });
-    this.maxValue = new Array(buffer);
+    this.divisorNumber = Math.ceil(buffer / this.factor);
+    
+    this.maxValue = new Array(this.divisorNumber * this.factor);
+    
     return buffer;
   }
 
   getTotals() {
     this.totalAnswers = this.chartInfo.reduce( (a, b) => a + b.quantity, 0);
+  }
+
+  getTableChartDisplay(maxValue, index) {
+    return ((maxValue - index) % (this.divisorNumber)) !== 0;
   }
 
   putMatrixColumns(item) {

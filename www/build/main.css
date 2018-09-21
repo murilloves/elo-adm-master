@@ -26011,6 +26011,10 @@ page-event-view-answers .line-top {
   border-top: 1px solid #ccc;
 }
 
+page-event-view-answers .hidden {
+  visibility: hidden;
+}
+
 page-event-view-question {
   font-size: 24px;
 }

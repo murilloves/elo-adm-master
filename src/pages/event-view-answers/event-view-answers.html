@@ -12,7 +12,12 @@
     <ion-row class="mt-auto">
       <div col class="col-zero mt-auto pl-pr-0 c-gray">
         <div *ngFor="let value of maxValue; let index = index">
-          <div text-right class="block-size bd-right pd-right font-sm">{{ maxValue.length - index }}</div>
+          <div class="block-size bd-right">
+            <div text-right class="pd-right font-sm"
+              [class.hidden]="getTableChartDisplay(maxValue.length, index)">
+              {{ (maxValue.length - index) }}
+            </div>
+          </div>
         </div>
         <hr>
         <div text-right class="block-pattern-size bd-right pd-right font-sm">0</div>
