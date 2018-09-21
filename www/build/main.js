@@ -367,17 +367,21 @@ var EventViewAnswersPage = /** @class */ (function () {
             { option: 'd', quantity: 4 },
             { option: 'e', quantity: 1 },
             { option: 'f', quantity: 6 },
+            { option: 'd', quantity: 4 },
+            { option: 'e', quantity: 1 },
+            { option: 'f', quantity: 6 },
             { option: 'g', quantity: 2 },
             { option: 'h', quantity: 11 },
         ];
         this.chartMatrix = [];
         this.maxValue = [];
         this.numberOfLines = ['', '', '', ''];
-        this.colors = ['#ff8a80', '#ff80ab', '#ea80fc', '#8c9eff', '#69f0ae', '#b2ff59', '#eeff41', '#ffd740'];
+        this.colors = ['#ff8a80', '#ff80ab', '#ea80fc', '#8c9eff', '#69f0ae', '#b2ff59', '#eeff41', '#ffd740', '#ffab40'];
         this.magicNumber = 56;
         this.event = this.navParams.get('event');
         this.question = this.navParams.get('question');
         // console.log(this.question);
+        this.randomColorInit = Math.floor(Math.random() * this.colors.length);
     }
     EventViewAnswersPage.prototype.ionViewDidLoad = function () {
         // this.getMax();
@@ -416,7 +420,7 @@ var EventViewAnswersPage = /** @class */ (function () {
     };
     EventViewAnswersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-event-view-answers',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-view-answers\event-view-answers.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title text-center>{{ event?.name }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div padding class="flex">\n    <ion-row class="mt-auto">\n      <div col class="col-zero mt-auto pl-pr-0 c-gray">\n        <div *ngFor="let value of maxValue; let index = index">\n          <div text-right class="block-size bd-right pd-right">{{ maxValue.length - index }}</div>\n        </div>\n        <hr>\n        <div text-right class="block-pattern-size bd-right pd-right">0</div>\n      </div>\n      <div col class="columns mt-auto pl-pr-0 c-gray" *ngFor="let column of chartInfo; let index = index">\n        <div text-center class="block-pattern-size font-regular">\n          {{ column.quantity }}\n        </div>\n        <div *ngFor="let n of chartMatrix[index]; let idx = index">\n          <div class="block-size font-regular" [style.background-color]="colors[index]">\n            <!-- <div class="pdl-pdt" *ngIf="idx === 0">{{ (100 * column.quantity / totalAnswers) | number:0 }}%</div> -->\n          </div>\n        </div>\n        <hr>\n        <div text-center class="block-pattern-size pt-1">\n          ( {{ column.option }} ) <strong>{{ (100 * column.quantity / totalAnswers) | number : \'1.2-2\' }}%</strong>\n        </div>\n      </div>\n    </ion-row>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-view-answers\event-view-answers.html"*/,
+            selector: 'page-event-view-answers',template:/*ion-inline-start:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-view-answers\event-view-answers.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title text-center>{{ event?.name }}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div padding class="flex">\n    <ion-row class="mt-auto">\n      <div col class="col-zero mt-auto pl-pr-0 c-gray">\n        <div *ngFor="let value of maxValue; let index = index">\n          <div text-right class="block-size bd-right pd-right">{{ maxValue.length - index }}</div>\n        </div>\n        <hr>\n        <div text-right class="block-pattern-size bd-right pd-right">0</div>\n      </div>\n      <div col class="columns mt-auto pl-pr-0 c-gray" *ngFor="let column of chartInfo; let index = index">\n        <div text-center class="block-pattern-size font-regular">\n          {{ column.quantity }}\n        </div>\n        <div *ngFor="let n of chartMatrix[index]; let idx = index">\n          <div class="block-size font-regular" [style.background-color]="colors[(randomColorInit + index) % colors.length]">\n            <!-- <div class="pdl-pdt" *ngIf="idx === 0">{{ (100 * column.quantity / totalAnswers) | number:0 }}%</div> -->\n          </div>\n        </div>\n        <hr>\n        <div text-center class="block-pattern-size pt-1">\n          ( {{ column.option }} ) <strong>{{ (100 * column.quantity / totalAnswers) | number : \'1.2-2\' }}%</strong>\n        </div>\n      </div>\n    </ion-row>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Murillo\Documents\Github\FREELAS\elo-adm\elo-adm-master\src\pages\event-view-answers\event-view-answers.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__event_register_questions_event_register_questions_service__["a" /* QuestionsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__event_register_questions_event_register_questions_service__["a" /* QuestionsService */]) === "function" && _c || Object])
     ], EventViewAnswersPage);

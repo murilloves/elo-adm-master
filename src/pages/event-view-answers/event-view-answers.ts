@@ -23,6 +23,9 @@ export class EventViewAnswersPage {
     { option: 'd', quantity: 4 },
     { option: 'e', quantity: 1 },
     { option: 'f', quantity: 6 },
+    { option: 'd', quantity: 4 },
+    { option: 'e', quantity: 1 },
+    { option: 'f', quantity: 6 },
     { option: 'g', quantity: 2 },
     { option: 'h', quantity: 11 },
   ];
@@ -31,7 +34,8 @@ export class EventViewAnswersPage {
   maxValue = [];
   numberOfLines = ['','','',''];
 
-  colors = ['#ff8a80', '#ff80ab', '#ea80fc', '#8c9eff', '#69f0ae', '#b2ff59', '#eeff41', '#ffd740']
+  colors = ['#ff8a80', '#ff80ab', '#ea80fc', '#8c9eff', '#69f0ae', '#b2ff59', '#eeff41', '#ffd740', '#ffab40']
+  randomColorInit;
 
   magicNumber = 56;
 
@@ -43,6 +47,7 @@ export class EventViewAnswersPage {
     this.event = this.navParams.get('event');
     this.question = this.navParams.get('question');
     // console.log(this.question);
+    this.randomColorInit = Math.floor(Math.random() * this.colors.length);
   }
 
   ionViewDidLoad() {

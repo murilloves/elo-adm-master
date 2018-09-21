@@ -22,7 +22,7 @@
           {{ column.quantity }}
         </div>
         <div *ngFor="let n of chartMatrix[index]; let idx = index">
-          <div class="block-size font-regular" [style.background-color]="colors[index]">
+          <div class="block-size font-regular" [style.background-color]="colors[(randomColorInit + index) % colors.length]">
             <!-- <div class="pdl-pdt" *ngIf="idx === 0">{{ (100 * column.quantity / totalAnswers) | number:0 }}%</div> -->
           </div>
         </div>
