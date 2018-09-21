@@ -27,6 +27,11 @@ export class QuestionsService {
             .get(`${API.base}/questions/${sessionId}`);
     }
 
+    getGraphQuestions(questionId): Observable < Object > {
+        return this.http
+            .get(`${API.base}/questions/${questionId}/graph`);
+    }
+
     addQuestion(data) {
         return this.http
             .post(`${API.base}/questions/`, data);
