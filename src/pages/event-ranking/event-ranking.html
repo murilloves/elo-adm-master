@@ -45,5 +45,11 @@
       </ion-row>
       <hr />
     </ion-grid>
+    <ion-row>
+      <button block-size ion-button class="btn-top-10" (click)="getNextTen()"
+        *ngIf="!isShowingAll()">
+        <i class="fa fa-arrow-down"></i>&nbsp;Listar próximos 10
+      </button>
+    </ion-row>
   </div>
 </ion-content>

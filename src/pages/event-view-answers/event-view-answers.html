@@ -23,8 +23,8 @@
         <div text-right class="block-pattern-size bd-right pd-right font-sm">0</div>
       </div>
       <div col class="columns mt-auto pl-pr-0 c-gray" *ngFor="let column of chartInfo; let index = index">
-        <div text-center class="block-pattern-size font-regular">
-          {{ column.quantity }}
+        <div text-center class="block-pattern-size font-regular font-lg">
+            <strong>{{ column.quantity }}</strong>
         </div>
         <div *ngFor="let n of chartMatrix[index]; let idx = index">
           <div class="block-size font-regular" [style.background-color]="colors[(randomColorInit + index) % colors.length]">
@@ -32,7 +32,7 @@
         </div>
         <hr>
         <div text-center class="block-pattern-size pt-1">
-          <span>( {{ column.letter }} )</span>
+          <span class="uppercase">( {{ column.letter }} )</span>
           &nbsp;<strong>{{ (100 * column.quantity / totalAnswers) | number : '1.2-2' }}%</strong>
         </div>
       </div>

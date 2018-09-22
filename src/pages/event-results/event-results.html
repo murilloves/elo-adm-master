@@ -19,7 +19,7 @@
       <span>Nenhuma pergunta cadastrada para esta sessão.</span>
     </ion-row>
     <ion-grid *ngIf="!initialLoading && allQuestions && allQuestions.length > 0" class="mb-1">
-      <ion-row>
+      <ion-row class="font-md">
         <ion-col col-6 col-md-4 padding>
           <strong>Título</strong>
         </ion-col>
@@ -39,19 +39,18 @@
           {{ question.subtitle }}
         </ion-col>
         <ion-col col-6 col-md-2 text-center>
-          <button ion-button class="actInact" (click)="activateOrDeactivate(question)"
+          <!-- Parte de poder ou não visualizar as questões -->
+          <!-- <button ion-button class="actInact" (click)="activateOrDeactivate(question)"
             [class.active]="question?.status" [class.inactive]="!question?.status">
             <i class="fa" [class.fa-eye]="question?.status" [class.fa-eye-slash]="!question?.status"></i>
-          </button>
+          </button> -->
           <button ion-button class="enter-question" (click)="goToDetailQuestionPage(question)">
             <i class="fa fa-file-text"></i>
-            <!-- <i class="fa fa-sign-in"></i> -->
           </button>
           <button ion-button class="showCharts" (click)="goToChartsPage(question)">
             <i class="fa fa-bar-chart"></i>
           </button>
         </ion-col>
-        <!-- <ion-col class="ellipsis innerHTML" [innerHTML]="question.description"></ion-col> -->
       </ion-row>
       <hr />
       <button block-size ion-button class="btn-top-10" (click)="goToRankingPage()">

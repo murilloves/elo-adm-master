@@ -16,7 +16,10 @@ export class EventRankingPage {
   public session: EventModel;
 
   initialLoading = true;
+  allListeners = null;
   listeners = null;
+
+  showing = 0;
 
   numberOfQuestions;
 
@@ -51,9 +54,24 @@ export class EventRankingPage {
   getAllListenersByRanking() {
     this.interactiveSectionsService.getRankingBySectionId(this.session)
       .subscribe( response => {
-        this.listeners = response;
+        this.allListeners = response;
+        this.getNextTen();
         this.initialLoading = false;
       });
   }
 
+  getNextTen() {
+    this.showing += 10;
+    this.listeners = [];
+    this.allListeners.forEach((element, index) => {
+      if (index < this.showing) {
+        this.listeners.push(element);
+      }
+    });
+  }
+
+  isShowingAll() {
+    return this.allListeners && this.showing >= this.allListeners.length;
+  }
+  
 }

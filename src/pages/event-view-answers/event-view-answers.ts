@@ -98,9 +98,13 @@ export class EventViewAnswersPage {
       }
     });
     this.divisorNumber = Math.ceil(buffer / this.factor);
-    
-    this.maxValue = new Array(this.divisorNumber * this.factor);
-    
+
+    if (buffer >= 5) {
+      this.maxValue = new Array(this.divisorNumber * this.factor);
+    } else {
+      this.maxValue = new Array(buffer);
+    }
+
     return buffer;
   }
 

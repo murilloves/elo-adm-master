@@ -1,5 +1,5 @@
 page-event-view-answers {
-    font-size: 1.5em;
+    font-size: 2em;
     color: #454545;
 
     .h-100 {
@@ -11,6 +11,9 @@ page-event-view-answers {
     }
     .font-m {
         font-size: 0.8em;
+    }
+    .font-lg {
+        font-size: 1.3em
     }
 
     .pl-pr-0 {
@@ -44,7 +47,7 @@ page-event-view-answers {
         background-color: bisque;
     }
     .c-gray {
-        color: #777;
+        color: #444;
         font-weight: 100;
     }
     .font-regular {
@@ -67,5 +70,9 @@ page-event-view-answers {
 
     .hidden {
         visibility: hidden;
+    }
+
+    .uppercase {
+        text-transform: uppercase;
     }
 }

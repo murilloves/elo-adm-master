@@ -25814,6 +25814,10 @@ page-event-ranking {
   font-size: 1.5em;
 }
 
+page-event-ranking .font-lg {
+  font-size: 1.35em;
+}
+
 page-event-register-questions input.text-input {
   margin: 13px 0px;
   width: 100%;
@@ -25855,6 +25859,10 @@ page-event-results .question-title {
   font-size: 1.5em;
 }
 
+page-event-results .font-md {
+  font-size: 1.3em;
+}
+
 page-event-results ion-row.table-striped.row:hover {
   background-color: #58606f0a;
 }
@@ -25878,7 +25886,7 @@ page-event-results button.actInact.button.button-md.button-default.button-defaul
 }
 
 page-event-results button.actInact.button.button-md.button-default.button-default-md.inactive:hover {
-  background-color: #3B514D;
+  background-color: #3f4248;
 }
 
 page-event-results button.showCharts.button.button-md.button-default.button-default-md {
@@ -25941,7 +25949,7 @@ page-event-speaker .fr-quick-insert.fr-visible {
 }
 
 page-event-view-answers {
-  font-size: 1.5em;
+  font-size: 2em;
   color: #454545;
 }
 
@@ -25955,6 +25963,10 @@ page-event-view-answers .font-sm {
 
 page-event-view-answers .font-m {
   font-size: 0.8em;
+}
+
+page-event-view-answers .font-lg {
+  font-size: 1.3em;
 }
 
 page-event-view-answers .pl-pr-0 {
@@ -25996,7 +26008,7 @@ page-event-view-answers .bg-mock-color {
 }
 
 page-event-view-answers .c-gray {
-  color: #777;
+  color: #444;
   font-weight: 100;
 }
 
@@ -26025,6 +26037,10 @@ page-event-view-answers .hidden {
   visibility: hidden;
 }
 
+page-event-view-answers .uppercase {
+  text-transform: uppercase;
+}
+
 page-event-view-question {
   font-size: 24px;
 }
@@ -26048,8 +26064,13 @@ page-event-view-question button.btn-secondary.button.button-md.button-default.bu
   color: #212121;
 }
 
-page-event-view-question .font-sm {
-  font-size: 0.8em;
+page-event-view-question .title {
+  font-size: 1.3em;
+  line-height: 2;
+}
+
+page-event-view-question .subtitle {
+  font-size: 0.9em;
 }
 
 page-event-view-question .pb-12 {
