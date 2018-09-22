@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { EventModel } from '../../models/event.model';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { QuestionsService } from '../event-register-questions/event-register-questions.service';
-
 @IonicPage()
 @Component({
   selector: 'page-event-view-question',
@@ -21,12 +19,10 @@ export class EventViewQuestionPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private questionsService: QuestionsService
+    public navParams: NavParams
   ) {
     this.event = this.navParams.get('event');
     this.question = this.navParams.get('question');
-    // console.log(this.question);
   }
 
   ionViewDidLoad() {

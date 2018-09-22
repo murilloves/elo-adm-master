@@ -26041,6 +26041,10 @@ page-event-view-answers .uppercase {
   text-transform: uppercase;
 }
 
+page-event-view-answers .col-zero.mt-auto.pl-pr-0.c-gray {
+  max-width: 8%;
+}
+
 page-event-view-question {
   font-size: 24px;
 }
