@@ -25821,6 +25821,15 @@ page-event-menu i.fa-17 {
   padding-top: 0.1em;
 }
 
+page-event-menu ion-card.card-light-gray {
+  background-color: #fafafa;
+  border-radius: 4px;
+}
+
+page-event-menu ion-content.bg-light-gray {
+  background-color: #eee;
+}
+
 page-event-ranking {
   font-size: 1.5em;
 }

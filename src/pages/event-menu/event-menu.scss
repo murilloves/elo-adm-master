@@ -8,4 +8,11 @@ page-event-menu {
         font-size: 1.7em;
         padding-top: 0.1em;
     }
+    ion-card.card-light-gray {
+        background-color: #fafafa;
+        border-radius: 4px;
+    }
+    ion-content.bg-light-gray {
+        background-color: #eee;
+    }
 }
