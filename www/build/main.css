@@ -25810,6 +25810,17 @@ page-event-interactive-section hr {
   border-bottom: 1px solid #eee;
 }
 
+page-event-menu span.card-header {
+  padding: 0.4em;
+  padding-left: 0.75em;
+  position: absolute;
+}
+
+page-event-menu i.fa-17 {
+  font-size: 1.7em;
+  padding-top: 0.1em;
+}
+
 page-event-ranking {
   font-size: 1.5em;
 }
