@@ -64,7 +64,7 @@ export class EventSpeakerPage {
   getAllSpeakers() {
     this.speakerService.getSpeakers()
       .subscribe( speakers => {
-        this.allSpeakers = speakers;
+        // this.allSpeakers = speakers;
         this.dismissLoading();
       }, error => {
         this.dismissLoading();
