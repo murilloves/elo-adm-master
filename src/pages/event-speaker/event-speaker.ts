@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { EventModel } from '../../models/event.model';
 import { FormGroup, FormBuilder, Validators } from '../../../node_modules/@angular/forms';
 
@@ -19,8 +19,18 @@ export class EventSpeakerPage {
   public form: FormGroup;
 
   myphoto: any;
-  allSpeakers;
-  initialLoading = true;
+  allSpeakers = [
+    { name: 'John Connor', detail: '-' },
+    { name: 'Sarah Connor', detail: '-' },
+    { name: 'Arnold Schwarzenegger', detail: '-' },
+    { name: 'Linda Hamilton', detail: '-' },
+    { name: 'Edward Furlong', detail: '-' },
+  ];
+  message = '';
+  showErrorMsg = false;
+
+  loading;
+
   isDesktop = (!document.URL.startsWith('http') || document.URL.startsWith('http://localhost:8100'));
 
   constructor(
@@ -28,42 +38,59 @@ export class EventSpeakerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
-    private speakerService: SpeakerService
+    private speakerService: SpeakerService,
+    private loadingController: LoadingController
   ) {
+
+    this.loading = this.loadingController.create({
+      content: 'Carregando palestrantes...'
+    })
+
+    this.loading.present();
+
+    setTimeout(() => {
+      this.loading.dismiss();
+    }, 3000);
+
     this.event = this.navParams.get('event');
 
     this.setClearFormAndImg();
   }
 
   ionViewDidLoad() {
-    // console.log('event', this.event);
-    this.froalaInit();
-    this.getAllSpeakers();
-  }
-
-  froalaInit() { 
-    // $('div#froala-editor').froalaEditor({
-    //   // Add the custom buttons in the toolbarButtons list, after the separator.
-    //   toolbarButtons: ['undo', 'redo' , 'bold', 'underline', '|', 'alert', 'clear', 'insert']
-    // })
+    // this.getAllSpeakers();
   }
 
   getAllSpeakers() {
     this.speakerService.getSpeakers()
       .subscribe( speakers => {
         this.allSpeakers = speakers;
-        this.initialLoading = false;
-        // console.log(this.allSpeakers);
+        this.dismissLoading();
+      }, error => {
+        this.dismissLoading();
+        this.errorMessage(error);
       });
   }
 
-  getAllSpeakersHardCode() {
-    this.speakerService.getSpeakersHardCode()
-      .subscribe( speakers => {
-        this.allSpeakers = speakers;
-        this.initialLoading = false;
-        // console.log(this.allSpeakers);
-      });
+  // getAllSpeakersHardCode() {
+  //   this.speakerService.getSpeakersHardCode()
+  //     .subscribe( speakers => {
+  //       this.allSpeakers = speakers;
+  //       this.dismissLoading();
+  //     }, error => {
+  //       this.dismissLoading();
+  //       this.errorMessage(error);
+  //     });
+  // }
+
+  errorMessage(error) {
+    this.showErrorMsg = true;
+    this.message = 'Ocorreu um erro, tente novamente...';
+    console.error(error);
+  }
+
+  dismissLoading() {
+    this.loading.dismiss();
   }
 
   takePhoto() {
@@ -110,7 +137,6 @@ export class EventSpeakerPage {
 
   setClearFormAndImg() {
     this.form = this.formBuilder.group({
-      // eventId: [this.event.UID],
       eventId: [this.event.eventId],
       name: ['', Validators.required],
       detail: ['', Validators.required],
