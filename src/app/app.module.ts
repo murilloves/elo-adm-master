@@ -23,6 +23,7 @@ import { EventInfoPage } from '../pages/event-info/event-info';
 import { EventInteractiveSectionPage } from '../pages/event-interactive-section/event-interactive-section';
 import { EventSchedulePage } from '../pages/event-schedule/event-schedule';
 import { EventSpeakerPage } from '../pages/event-speaker/event-speaker';
+import { EventSpeakerAddPage } from '../pages/event-speaker-add/event-speaker-add';
 import { EventSponsorPage } from '../pages/event-sponsor/event-sponsor';
 import { EventRegisterQuestionsPage } from '../pages/event-register-questions/event-register-questions';
 import { EventResultsPage } from '../pages/event-results/event-results';
@@ -53,6 +54,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EventRegisterQuestionsPage,
     EventResultsPage,
     EventSchedulePage,
+    EventSpeakerAddPage,
     EventSpeakerPage,
     EventSponsorPage,
     EventViewAnswersPage,
@@ -81,6 +83,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     EventRegisterQuestionsPage,
     EventResultsPage,
     EventSchedulePage,
+    EventSpeakerAddPage,
     EventSpeakerPage,
     EventSponsorPage,
     EventViewAnswersPage,

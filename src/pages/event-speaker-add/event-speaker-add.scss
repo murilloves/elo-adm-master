@@ -1,0 +1,76 @@
+page-event-speaker-add {
+    .pt-05 {
+        padding-top: 0.5em;
+    }
+
+    input.text-input {
+        margin: 13px 0px;
+        width: 100%;
+        -webkit-box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
+        padding: 0.8em;
+        border-radius: 0.5em;
+    }
+    img.speakers-photo {
+        display: block;
+        border-radius: 0.5em;
+        width: 65%;
+        margin: auto;
+    }
+
+    /* Esconde o input */
+    input[type='file'] {
+        display: none
+    }
+
+    ion-label.label {
+        white-space: initial;
+        line-height: 1.5em;
+    }
+
+    /* Aparência que terá o seletor de arquivo */
+    label {
+        background-color: #4285F4;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        padding: 8px 24px;
+    }
+
+    ion-label.cv {
+        color: #999;
+        font-size: 1em !important;
+        padding-left: 0.4em;
+    }
+
+    div#froala-editor {
+        -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.05);
+        box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.05);
+    }
+    
+    div.fr-toolbar.fr-top {
+        border: none;
+        box-shadow: none;
+        border-top: 0px solid #ccc !important;
+    }
+    .fr-box.fr-basic.fr-top .fr-wrapper {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-top: 1px solid #eee;
+    }
+
+    .fr-toolbar .fr-command.fr-btn.fr-dropdown.fr-selection {
+        display: none;
+    }
+    .fr-quick-insert.fr-visible {
+        display: none !important;
+    }
+
+    ion-row.form {
+        padding-top: 1.2em;
+    }
+
+    ion-col.btn-save {
+        margin-top: 2em;
+    }
+}

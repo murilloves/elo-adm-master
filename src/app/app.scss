@@ -4,8 +4,9 @@
 
 .pd-20 { padding: 20px }
 .pt-3 { padding-top: 3em }
-.pt-13 { padding-top: 13px }
+.pt-14 { padding-top: 14px }
 .pt-16 { padding-top: 16px }
+.pb-12 { padding-bottom: 12px }
 .pr-0 { padding-right: 0px }
 
 .m-16 { margin: 16px }
@@ -66,6 +67,11 @@ ion-row.table-striped.pointer {
     padding-right: 1em;
 }
 
+ion-card.card-light-gray.card {
+    -webkit-box-shadow: 0 0 24px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 24px 0px rgba(0, 0, 0, 0.08);
+}
+
 ion-col.col.ellipsis {
     white-space: nowrap;
     overflow: hidden;
@@ -102,6 +108,7 @@ button.btn-add {
     padding: 0px;
     color: #555;
     padding-bottom: 1em;
+    -webkit-box-shadow: 0 0 16px 0px rgba(0, 0, 0, 0.03);
     box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.03);
 }
 

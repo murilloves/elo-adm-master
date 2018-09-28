@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{ event?.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- componentizar esse elemento -->
+  <div class="new-padding">
+    <ion-row class="page-info">
+      <div col class="pt-14 pb-12">Novo Palestrante</div>
+      <div col>
+        <div class="pt-05">
+          <label for='speakers-photo'>Selecionar foto</label>
+        </div>
+        <input type="file" id="speakers-photo" name="speakers-photo" (change)="readImg($event)">
+      </div>
+      <!-- if is Cordova -->
+      <!-- <div *ngIf="!isDesktop" class="">
+        <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>
+      </div> -->
+    </ion-row>
+  </div>
+  <!-- -->
+
+  <!-- CADASTRO -->
+  <form [formGroup]="form" padding>
+    <ion-grid fixed>
+      <ion-row class="form" align-items-center justify-content-center>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <!-- <ion-label stacked>Foto</ion-label> -->
+          <!-- <div>
+            <div class="">
+              <label for='speakers-photo'>Selecionar foto</label>
+            </div>
+            <input type="file" id="speakers-photo" name="speakers-photo" (change)="readImg($event)">
+          </div> -->
+          <!-- if is Cordova -->
+          <!-- <div *ngIf="!isDesktop" class="">
+            <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>
+          </div> -->
+          <div class="mt-32" *ngIf="myphoto">
+            <img class="speakers-photo"src="{{ myphoto }}">
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <!-- <ion-label stacked>Nome</ion-label> -->
+          <div class="">
+            <ion-input type="text" value="{{ newSpeaker?.name }}" formControlName="name" placeholder="Nome"></ion-input>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <!-- <ion-label stacked>Tema da Palestra</ion-label> -->
+          <div class="">
+            <ion-input type="text" value="{{ newSpeaker?.detail }}" formControlName="detail" placeholder="Detalhe"></ion-input>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-12 col-md-12>
+          <ion-label stacked class="cv">Currículo</ion-label>
+          <!-- <ion-input type="text" value="{{ newSpeaker?.resume }}" formControlName="resume"></ion-input> -->
+          <div class="">
+            <div id="froala-editor" [froalaEditor] formControlName="resume"></div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 col-sm-12 col-md-12 class="btn-save">
+          <button ion-button block (click)="save()" [disabled]="!form.valid">SALVAR</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

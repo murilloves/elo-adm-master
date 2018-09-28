@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '../../../node_modules/@angul
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { SpeakerService } from './event-speaker.service';
+import { EventSpeakerAddPage } from '../event-speaker-add/event-speaker-add';
 
 @Component({
   selector: 'page-event-speaker',
@@ -41,30 +42,23 @@ export class EventSpeakerPage {
     private speakerService: SpeakerService,
     private loadingController: LoadingController
   ) {
-
     this.loading = this.loadingController.create({
       content: 'Carregando palestrantes...'
     })
-
-    this.loading.present();
-
-    setTimeout(() => {
-      this.loading.dismiss();
-    }, 3000);
-
     this.event = this.navParams.get('event');
-
+    
     this.setClearFormAndImg();
   }
-
+  
   ionViewDidLoad() {
-    // this.getAllSpeakers();
+    // this.presentLoading();
+    this.getAllSpeakers();
   }
 
   getAllSpeakers() {
     this.speakerService.getSpeakers()
       .subscribe( speakers => {
-        // this.allSpeakers = speakers;
+        this.allSpeakers = <any>speakers;
         this.dismissLoading();
       }, error => {
         this.dismissLoading();
@@ -87,6 +81,10 @@ export class EventSpeakerPage {
     this.showErrorMsg = true;
     this.message = 'Ocorreu um erro, tente novamente...';
     console.error(error);
+  }
+
+  presentLoading() {
+    this.loading.present();
   }
 
   dismissLoading() {
@@ -164,5 +162,9 @@ export class EventSpeakerPage {
         console.error('deu ruim', error);
       }
     );
+  }
+
+  goToAddPage() {
+    this.navCtrl.push( EventSpeakerAddPage, { event: this.event });
   }
 }
