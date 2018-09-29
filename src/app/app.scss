@@ -11,6 +11,7 @@
 
 .m-16 { margin: 16px }
 .mt-3 { margin-top: 3em }
+.mt-4 { margin-top: 4px }
 .mt-16 { margin-top: 16px }
 .mt-32 { margin-top: 32px }
 .mb-1 { margin-bottom: 1em }
@@ -70,6 +71,7 @@ ion-row.table-striped.pointer {
 ion-card.card-light-gray.card {
     -webkit-box-shadow: 0 0 24px 0px rgba(0, 0, 0, 0.08);
     box-shadow: 0 0 24px 0px rgba(0, 0, 0, 0.08);
+    color: #444 !important;
 }
 
 ion-col.col.ellipsis {
