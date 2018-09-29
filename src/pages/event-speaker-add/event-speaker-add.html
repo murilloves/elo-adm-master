@@ -12,12 +12,6 @@
   <div class="new-padding">
     <ion-row class="page-info">
       <div col class="pt-14 pb-12">Novo Palestrante</div>
-      <div col>
-        <div class="pt-05">
-          <label for='speakers-photo'>Selecionar foto</label>
-        </div>
-        <input type="file" id="speakers-photo" name="speakers-photo" (change)="readImg($event)">
-      </div>
       <!-- if is Cordova -->
       <!-- <div *ngIf="!isDesktop" class="">
         <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>
@@ -30,7 +24,9 @@
   <form [formGroup]="form">
     <ion-grid fixed>
       <ion-row class="form" align-items-center justify-content-center>
-        <ion-col col-12 col-sm-12 col-md-12>
+        <ion-col type="file" col-12 col-sm-12 col-md-12 (change)="readImg($event)">
+          <label id="selecionarFoto" for='speakers-photo' class="full-size">Selecionar foto</label>
+          <input type="file" id="speakers-photo" name="speakers-photo" class="full-size">
           <!-- <ion-label stacked>Foto</ion-label> -->
           <!-- <div>
             <div class="">
@@ -42,7 +38,10 @@
           <!-- <div *ngIf="!isDesktop" class="">
             <button type="file" ion-button color="primary" (click)="uploadImageMobile()">Selecionar foto</button>
           </div> -->
-          <div class="mt-32" *ngIf="myphoto">
+          <div col *ngIf="!myphoto">
+            <i class="fa fa-user-circle-o icon-photo"></i>
+          </div>
+          <div *ngIf="myphoto">
             <img class="speakers-photo"src="{{ myphoto }}">
           </div>
         </ion-col>
